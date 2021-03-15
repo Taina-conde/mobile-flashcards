@@ -5,7 +5,7 @@ class DeckListView extends React.Component {
     render (){
         return(
             <View>
-
+                <Text>DeckListView</Text>
             </View>
         )
     }
