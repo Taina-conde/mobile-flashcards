@@ -16,9 +16,9 @@ const NaviTab = () => (
         return <Entypo name="plus" size={24} color={color} />
       }
     })}
+    
   >
     <Tab.Screen name = 'Decks' component = {DeckListView}/>
-
     <Tab.Screen name = 'Add Deck' component = {NewDeckView}/>
   </Tab.Navigator>
 )
