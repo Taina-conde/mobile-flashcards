@@ -7,7 +7,7 @@ class DeckView extends React.Component {
         return (
             <View>
                 <Text>DeckView</Text>
-                <Text>DeckListView</Text>
+                
                 <TouchableOpacity onPress = {() => navigation.navigate('New question')}>
                     <Text>Add card</Text>
                 </TouchableOpacity>
