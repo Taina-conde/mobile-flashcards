@@ -1,6 +1,6 @@
 import React from 'react' 
-import DeckListView from './components/DeckListView';
-import NewDeckView from './components/NewDeckView';
+import DeckListView from './DeckListView';
+import NewDeckView from './NewDeckView';
 import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
