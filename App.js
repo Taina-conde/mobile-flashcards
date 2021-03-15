@@ -9,21 +9,25 @@ import DeckListView from './components/DeckListView';
 import NewDeckView from './components/NewDeckView';
 import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
 
-const NaviTab = createBottomTabNavigator()
+const Tab = createBottomTabNavigator();
+
+const NaviTab = () => (
+  <Tab.Navigator
+  
+  >
+    <Tab.Screen name = 'Decks' component = {DeckListView}/>
+
+    <Tab.Screen name = 'Add Deck' component = {NewDeckView}/>
+  </Tab.Navigator>
+)
+
+
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+    <NavigationContainer >
       <StatusBar style="auto" />
-    </View>
+      
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
