@@ -1,5 +1,10 @@
 import React from 'react' 
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { 
+    View, 
+    Text, 
+    StyleSheet, 
+    TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
 
 class DeckListView extends React.Component {
     render (){
@@ -23,5 +28,11 @@ const styles = StyleSheet.create({
         alignItems: 'center', 
     }
 })
-export default DeckListView
+
+function mapStateToProps(decks) {
+    return {
+        decks
+    }
+}
+export default connect(mapStateToProps)(DeckListView)
 
