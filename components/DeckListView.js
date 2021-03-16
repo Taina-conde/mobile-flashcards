@@ -3,18 +3,37 @@ import {
     View, 
     Text, 
     StyleSheet, 
-    TouchableOpacity } from 'react-native'
+    TouchableOpacity,
+    FlatList,
+} from 'react-native'
 import { connect } from 'react-redux'
 
+
 class DeckListView extends React.Component {
+    renderItem = ({ item }) => {
+        const {navigation} = this.props
+        return (
+            <TouchableOpacity onPress = {() => navigation.navigate('Deck details')}>
+                <Text>{item.title }</Text>
+                <Text>{item.questions.length}</Text>
+            </TouchableOpacity>
+        )
+    }
     render (){
-        const { navigation } = this.props
+        const { navigation, decks } = this.props
         return(
             <View style = {styles.container}>
                 <Text>DeckListView</Text>
-                <TouchableOpacity onPress = {() => navigation.navigate('Deck details')}>
-                    <Text>Press to Deck View</Text>
-                </TouchableOpacity>
+                { (Object.keys(decks).length === 0)
+                  ? <Text> 0 decks</Text>
+                  : <FlatList 
+                        data = {decks}
+                        renderItem = {this.renderItem}
+                        keyExtractor = {item => item.title}
+                    />
+                
+                }
+                
 
             </View>
         )
