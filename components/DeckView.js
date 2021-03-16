@@ -1,5 +1,6 @@
 import React from 'react' 
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { connect } from 'react-redux'
 
 class DeckView extends React.Component {
     render(){
@@ -18,4 +19,9 @@ class DeckView extends React.Component {
         )
     }
 }
-export default DeckView
+function mapStateToProps(decks, { id }) {
+    return {
+        deck: decks[id]
+    }
+}
+export default connect(mapStateToProps)(DeckView)
