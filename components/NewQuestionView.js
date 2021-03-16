@@ -12,14 +12,30 @@ class NewQuestionView extends React.Component {
         question: '',
         answer: ''
     }
+
+    handleTextChange = (event) => {
+        const value = event.target.value;
+        this.setState(()=> ({
+            [event.target.name] : value,
+        }))
+
+    }
     render(){
         return (
             <View>
                 <Text>NewQuestionView</Text>
-                <TextInput/>
-                <TextInput/>
+                <TextInput
+                    onChange = {this.handleTextChange}
+                    placeholder = 'Enter new question'
+                    name = 'question'
+                />
+                <TextInput
+                    onChange = {this.handleTextChange}
+                    placeholder = 'Enter answer'
+                    name = 'answer'
+                />
                 <TouchableOpacity>
-                    SUBMIT
+                    <Text>SUBMIT</Text>
                 </TouchableOpacity>
             </View>
         )
