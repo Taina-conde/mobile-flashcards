@@ -18,9 +18,14 @@ class NewDeckView extends React.Component {
             input
         }))
     }
-    handleTextChange = ()=> {
+    handleSubmit = ()=> {
         //update store
-        this.props.dispatch(addDeck(this.state.input))
+        this.props.dispatch(addDeck({
+            [this.state.input] : {
+                title: this.state.input,
+                questions: []
+            }
+        }))
         //update AsyncStorage
         //route to individual DeckView for the new deck
     }
