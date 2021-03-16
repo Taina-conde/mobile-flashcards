@@ -7,6 +7,7 @@ import {
     TouchableOpacity,
 } from 'react-native';
 import { addDeck } from '../actions'
+import { connect } from 'react-redux'
 
 class NewDeckView extends React.Component {
     state = {
@@ -42,4 +43,4 @@ class NewDeckView extends React.Component {
         )
     }
 }
-export default NewDeckView
+export default connect()(NewDeckView)
