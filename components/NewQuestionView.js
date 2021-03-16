@@ -19,6 +19,10 @@ class NewQuestionView extends React.Component {
         }))
 
     }
+    handleSubmit = () => {
+        // add question to the deck
+        //route back to deck view
+    }
     render(){
         return (
             <View>
@@ -33,7 +37,7 @@ class NewQuestionView extends React.Component {
                     placeholder = 'Enter answer'
                     
                 />
-                <TouchableOpacity>
+                <TouchableOpacity onPress = {this.handleSubmit}>
                     <Text>SUBMIT</Text>
                 </TouchableOpacity>
             </View>
