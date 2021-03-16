@@ -13,10 +13,9 @@ class NewQuestionView extends React.Component {
         answer: ''
     }
 
-    handleTextChange = (event) => {
-        const value = event.target.value;
+    handleTextChange = (input, name) => {
         this.setState(()=> ({
-            [event.target.name] : value,
+            [name] : input,
         }))
 
     }
@@ -25,14 +24,14 @@ class NewQuestionView extends React.Component {
             <View>
                 <Text>NewQuestionView</Text>
                 <TextInput
-                    onChange = {this.handleTextChange}
+                    onChangeText = {(input) => this.handleTextChange(input, 'question')}
                     placeholder = 'Enter new question'
-                    name = 'question'
+                    
                 />
                 <TextInput
-                    onChange = {this.handleTextChange}
+                    onChangeText = {(input) => this.handleTextChange(input, 'answer')}
                     placeholder = 'Enter answer'
-                    name = 'answer'
+                    
                 />
                 <TouchableOpacity>
                     <Text>SUBMIT</Text>
