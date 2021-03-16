@@ -7,9 +7,15 @@ import {
     FlatList,
 } from 'react-native'
 import { connect } from 'react-redux'
+import { receiveDecks } from '../actions';
 
 
 class DeckListView extends React.Component {
+    componentDidMount() {
+        const { dispatch, decks } = this.props;
+
+        dispatch(receiveDecks(decks))
+    }
     renderItem = ({ item }) => {
         const {navigation} = this.props
         return (
