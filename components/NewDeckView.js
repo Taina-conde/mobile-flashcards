@@ -19,8 +19,10 @@ class NewDeckView extends React.Component {
         }))
     }
     handleSubmit = ()=> {
+        const { dispatch, navigation } = this.props;
+        
         //update store
-        this.props.dispatch(addDeck({
+        dispatch(addDeck({
             [this.state.input] : {
                 title: this.state.input,
                 questions: []
@@ -28,6 +30,9 @@ class NewDeckView extends React.Component {
         }))
         //update AsyncStorage
         //route to individual DeckView for the new deck
+        navigation.navigate('Deck details', {
+            deckId: this.state.input
+        })
     }
     render(){
         return (
