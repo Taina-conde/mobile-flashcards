@@ -4,10 +4,13 @@ import { connect } from 'react-redux'
 
 class DeckView extends React.Component {
     render(){
-        const { navigation } = this.props;
+        const { navigation, deck } = this.props;
+        
         return (
             <View>
                 <Text>DeckView</Text>
+                <Text>{deck.title}</Text>
+                <Text>Number of cards: {deck.questions.length}</Text>
                 
                 <TouchableOpacity onPress = {() => navigation.navigate('New question')}>
                     <Text>Add card</Text>
@@ -19,9 +22,10 @@ class DeckView extends React.Component {
         )
     }
 }
-function mapStateToProps(decks, { id }) {
+function mapStateToProps(decks, { route }) {
+    const { deckId } = route.params;
     return {
-        deck: decks[id]
+        deck: decks[deckId]
     }
 }
 export default connect(mapStateToProps)(DeckView)
