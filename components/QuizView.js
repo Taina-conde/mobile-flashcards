@@ -23,6 +23,16 @@ class QuizView extends React.Component {
         }))
         
     }
+    handleRestart = () => {
+        this.setState({
+            countCorrect: 0,
+            currentCardIndex : 0,
+        })
+    }
+    handleBackToDeck = () => {
+        const { navigation } = this.props;
+        navigation.goBack()
+    }
     render() {
         const { route, decks } = this.props;
         const { deckId } = route.params;
