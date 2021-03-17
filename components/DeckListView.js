@@ -20,7 +20,7 @@ class DeckListView extends React.Component {
         const {navigation} = this.props
         console.log('renderItem', item)
         return (
-            <TouchableOpacity onPress = {() => navigation.navigate('Deck details')}>
+            <TouchableOpacity onPress = {() => navigation.navigate('Deck details', { deckId: item.title})}>
                 <Text>{item.title }</Text>
                 <Text>{item.questions.length}</Text>
             </TouchableOpacity>

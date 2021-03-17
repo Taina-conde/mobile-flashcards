@@ -24,9 +24,8 @@ class NewQuestionView extends React.Component {
     handleSubmit = () => {
         // add question to the deck
         const { dispatch, navigation, route } = this.props;
-        const { deck } = route.params;
-        console.log('deck : ', deck)
-        const deckId = deck.title
+        const { deckId } = route.params;
+        console.log('deckId : ', deckId)
         const { question, answer } = this.state;
         dispatch(addCardToDeck(question, answer, deckId))
         //add question in AsyncStorage
