@@ -6,6 +6,8 @@ import {
     TextInput,
     TouchableOpacity,
  } from 'react-native'
+import { addCardToDeck } from '../actions'
+import { connect } from 'react-redux'
 
 class NewQuestionView extends React.Component {
     state = {
@@ -21,7 +23,14 @@ class NewQuestionView extends React.Component {
     }
     handleSubmit = () => {
         // add question to the deck
+        const { dispatch, navigation, route } = this.props;
+        const { deck } = route.params;
+        console.log('deck : ', deck)
+        const deckId = deck.title
+        const { question, answer } = this.state;
+        dispatch(addCardToDeck(question, answer, deckId))
         //route back to deck view
+        navigation.goBack()
     }
     render(){
         return (
@@ -44,4 +53,4 @@ class NewQuestionView extends React.Component {
         )
     }
 }
-export default NewQuestionView
+export default connect()(NewQuestionView)
