@@ -2,16 +2,37 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import NoCards from './NoCards'
+
+
 class QuizView extends React.Component {
+    state = {
+        countCorrect: 0,
+        currentCardIndex: 0,
+    }
+    handleOnPress(userAnswer) {
+        console.log('userAnswer', userAnswer)
+        if (userAnswer === 'correct') {
+            this.setState({
+                countCorrect: this.state.countCorrect + 1,
+                currentCardIndex : this.state.currentCardIndex + 1,
+            })
+            
+        }
+        this.setState(()=> ({
+            currentCardIndex: this.state.currentCardIndex + 1,
+        }))
+        
+    }
     render() {
         const { route, decks } = this.props;
         const { deckId } = route.params;
+        const { countCorrect, currentCardIndex } = this.state;
         const deck = decks[deckId];
         if (deck.questions.length === 0) {
             return <NoCards/>
         }
         const cardsTotal = deck.questions.length;
-        let currentCardIndex = 0;
+        
         let currentCard = deck.questions[currentCardIndex];
         return (
             <View>
