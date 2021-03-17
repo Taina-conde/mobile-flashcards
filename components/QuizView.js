@@ -23,6 +23,18 @@ class QuizView extends React.Component {
                         <Text>View answer</Text>
                     </TouchableOpacity>
                 </View>
+                <View>
+                    <Text>{currentCard.answer}</Text>
+                    <TouchableOpacity>
+                        <Text>View question</Text>
+                    </TouchableOpacity>
+                </View>
+                <TouchableOpacity onPress = {() => this.handleOnPress('correct')}>
+                    <Text>Correct</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress = {() => this.handleOnPress('incorrect')}>
+                    <Text>Incorrect</Text>
+                </TouchableOpacity>
             </View>
         )
     }
