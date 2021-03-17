@@ -29,6 +29,8 @@ class NewQuestionView extends React.Component {
         const deckId = deck.title
         const { question, answer } = this.state;
         dispatch(addCardToDeck(question, answer, deckId))
+        //add question in AsyncStorage
+        
         //route back to deck view
         navigation.goBack()
     }

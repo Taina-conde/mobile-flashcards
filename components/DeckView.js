@@ -15,7 +15,7 @@ class DeckView extends React.Component {
                 <TouchableOpacity onPress = {() => navigation.navigate('New question', { deck : deck })}>
                     <Text>Add card</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress = {() => navigation.navigate('Quiz details')}>
+                <TouchableOpacity onPress = {() => navigation.navigate('Quiz details', { deckId : deck.title})}>
                     <Text>Start quiz</Text>
                 </TouchableOpacity>
             </View>
