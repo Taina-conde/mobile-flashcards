@@ -32,7 +32,8 @@ class QuizView extends React.Component {
             return <NoCards/>
         }
         const cardsTotal = deck.questions.length;
-        if (currendCardIndex >= deck.questions.length ) {
+        let currentCard = deck.questions[currentCardIndex];
+        if (currentCardIndex >= deck.questions.length ) {
             return (
                 <View>
                     <Text>Score</Text>
@@ -47,7 +48,7 @@ class QuizView extends React.Component {
                 </View>
             )
         }
-        let currentCard = deck.questions[currentCardIndex];
+        
         return (
             <View>
                 <Text>QuizView</Text>
