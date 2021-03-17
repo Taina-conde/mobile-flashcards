@@ -18,6 +18,7 @@ class DeckListView extends React.Component {
     }
     renderItem = ({ item }) => {
         const {navigation} = this.props
+        console.log('renderItem', item)
         return (
             <TouchableOpacity onPress = {() => navigation.navigate('Deck details')}>
                 <Text>{item.title }</Text>
@@ -26,16 +27,18 @@ class DeckListView extends React.Component {
         )
     }
     render (){
-        const { navigation, decks } = this.props
+        const { navigation, decks } = this.props;
+        const decksKeys = Object.keys(decks);
+        const data = Object.values(decks)
         return(
             <View style = {styles.container}>
                 <Text>DeckListView</Text>
-                { (Object.keys(decks).length === 0)
+                { (decksKeys.length === 0)
                   ? <Text> 0 decks</Text>
                   : <FlatList 
-                        data = {decks}
+                        data = {data}
                         renderItem = {this.renderItem}
-                        keyExtractor = {item => item.title}
+                        keyExtractor = { item => item.title}
                     />
                 
                 }
