@@ -29,6 +29,10 @@ class NewDeckView extends React.Component {
             }
         }))
         //update AsyncStorage
+        //clear input
+        this.setState(()=> ({
+            input: ""
+        }))
         //route to individual DeckView for the new deck
         navigation.navigate('Deck details', {
             deckId: this.state.input
