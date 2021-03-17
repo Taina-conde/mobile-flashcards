@@ -32,7 +32,21 @@ class QuizView extends React.Component {
             return <NoCards/>
         }
         const cardsTotal = deck.questions.length;
-        
+        if (currendCardIndex >= deck.questions.length ) {
+            return (
+                <View>
+                    <Text>Score</Text>
+                    <Text>{`${(countCorrect/cardsTotal)*100}%`}</Text>
+                    <TouchableOpacity onPress = {this.handleRestart}>
+                        <Text>Restart Quiz</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress = {this.handleBackToDeck}>
+                        <Text>Back to Deck</Text>
+                    </TouchableOpacity>
+
+                </View>
+            )
+        }
         let currentCard = deck.questions[currentCardIndex];
         return (
             <View>
