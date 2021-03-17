@@ -47,14 +47,13 @@ class QuizView extends React.Component {
             return (
                 <View>
                     <Text>Score</Text>
-                    <Text>{`${((countCorrect/cardsTotal)*100).toFixed(2)}%`}</Text>
+                    <Text>{`${((countCorrect/cardsTotal)*100).toFixed(1)}%`}</Text>
                     <TouchableOpacity onPress = {this.handleRestart}>
                         <Text>Restart Quiz</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress = {this.handleBackToDeck}>
                         <Text>Back to Deck</Text>
                     </TouchableOpacity>
-
                 </View>
             )
         }
