@@ -16,10 +16,12 @@ export function addDeck(deck) {
     }
 }
 
-export function addCardToDeck(card) {
+export function addCardToDeck(question, answer, deckId) {
     return {
         type: ADD_CARD_TO_DECK,
-        card
+        question, 
+        answer,
+        deckId
     }
 }
 
