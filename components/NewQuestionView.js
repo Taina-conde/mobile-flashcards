@@ -35,14 +35,16 @@ class NewQuestionView extends React.Component {
     }
     render(){
         return (
-            <View>
-                <Text>NewQuestionView</Text>
+            <View style = {styles.container}>
                 <TextInput
+                    style = {styles.inputField}
                     onChangeText = {(input) => this.handleTextChange(input, 'question')}
                     placeholder = 'Enter new question'
                     
+                    
                 />
                 <TextInput
+                    style = {styles.inputField}
                     onChangeText = {(input) => this.handleTextChange(input, 'answer')}
                     placeholder = 'Enter answer'
                     
@@ -54,4 +56,27 @@ class NewQuestionView extends React.Component {
         )
     }
 }
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+    inputField : {
+        borderColor: 'gray',
+        borderWidth: 1,
+        borderRadius: 5,
+        alignSelf: 'stretch',
+        marginLeft: 30,
+        marginRight: 30,
+        marginBottom: 40,
+        marginTop: 40,
+        padding: 8,
+        fontSize: 22,
+        
+        
+        
+    }
+
+})
 export default connect()(NewQuestionView)
