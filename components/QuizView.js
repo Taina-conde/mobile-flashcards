@@ -39,13 +39,13 @@ class QuizView extends React.Component {
         const { countCorrect, currentCardIndex } = this.state;
         const deck = decks[deckId];
         if (deck.questions.length === 0) {
-            return <NoCards/>
+            return <NoCards style = {styles.container}/>
         }
         const cardsTotal = deck.questions.length;
         let currentCard = deck.questions[currentCardIndex];
         if (currentCardIndex >= deck.questions.length ) {
             return (
-                <View>
+                <View style = {styles.container}>
                     <Text>Score</Text>
                     <Text>{`${((countCorrect/cardsTotal)*100).toFixed(1)}%`}</Text>
                     <TouchableOpacity onPress = {this.handleRestart}>
@@ -59,7 +59,7 @@ class QuizView extends React.Component {
         }
         
         return (
-            <View>
+            <View style = {styles.container}>
                 <Text>QuizView</Text>
                 <Text>{`${currentCardIndex + 1}/${cardsTotal}`}</Text>
                 <View>
@@ -84,6 +84,15 @@ class QuizView extends React.Component {
         )
     }
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
+
+})
 function mapStateToProps(decks) {
     return {
         decks

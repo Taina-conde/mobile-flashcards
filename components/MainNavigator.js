@@ -37,7 +37,14 @@ const MainNavigator = () => (
                 return { title : deckId }
             }}
         />
-        <Stack.Screen name = 'Quiz details' component = {QuizView}/>
+        <Stack.Screen 
+            name = 'Quiz details' 
+            component = {QuizView}
+            options = {{
+                headerBackTitle: 'Quiz',
+                headerTitle: '',
+            }}
+        />
         <Stack.Screen 
             name = 'New question' 
             component = {NewQuestionView}
