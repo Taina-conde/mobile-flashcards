@@ -18,10 +18,10 @@ const NaviTab = () => (
       }
     })}
     tabBarOptions = {{
-        activeTintColor: Platform.OS === 'ios' ? 'rgb(0, 0, 0)': '#ffffff',
+        activeTintColor: Platform.OS === 'ios' ? '#084B8A' : '#E6E9F2',
         style : {
           height: 100,
-          backgroundColor: Platform.OS === 'ios' ? '#ffffff' : 'rgb(0, 0, 0)',
+          backgroundColor: Platform.OS === 'ios' ? '#E6E9F2' : '#084B8A',
           shadowColor: `rgba(0,0,0, 0.24)`,
           shadowOffset: {
             width: 0, 
