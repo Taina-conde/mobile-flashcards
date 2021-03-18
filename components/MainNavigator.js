@@ -28,7 +28,15 @@ const MainNavigator = () => (
             }}
             
         />
-        <Stack.Screen name = 'Deck details' component = {DeckView}/>
+        <Stack.Screen 
+            name = 'Deck details' 
+            component = {DeckView}
+            options = {({ route }) => {
+                const { deckId } = route.params;
+
+                return { title : deckId }
+            }}
+        />
         <Stack.Screen name = 'Quiz details' component = {QuizView}/>
         <Stack.Screen name = 'New question' component = {NewQuestionView}/>
     </Stack.Navigator>
