@@ -9,7 +9,23 @@ const Stack = createStackNavigator()
 
 const MainNavigator = () => (
     <Stack.Navigator>
-        <Stack.Screen name = 'Home' component = {NaviTab}/>
+        <Stack.Screen 
+            name = 'Home' 
+            component = {NaviTab}
+            options = {{
+                title : 'My decks',
+                headerStyle: {
+                    backgroundColor: '#084B8A',
+                    
+                },
+                headerTintColor: '#E6E9F2',
+                headerTitleStyle: {
+                    fontSize: 18,
+                    fontWeight: 'bold'
+                }
+            }}
+            
+        />
         <Stack.Screen name = 'Deck details' component = {DeckView}/>
         <Stack.Screen name = 'Quiz details' component = {QuizView}/>
         <Stack.Screen name = 'New question' component = {NewQuestionView}/>
