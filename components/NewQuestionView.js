@@ -36,18 +36,19 @@ class NewQuestionView extends React.Component {
     render(){
         return (
             <View style = {styles.container}>
-                
+                <Text style = {styles.labels}>Enter new question: </Text>
                 <TextInput
                     style = {styles.inputField}
                     onChangeText = {(input) => this.handleTextChange(input, 'question')}
-                    placeholder = 'Enter new question'
+                    placeholder = 'question ...'
                     
                     
                 />
+                <Text style = {styles.labels}>Enter answer :</Text>
                 <TextInput
                     style = {styles.inputField}
                     onChangeText = {(input) => this.handleTextChange(input, 'answer')}
-                    placeholder = 'Enter answer'
+                    placeholder = 'answer ...'
                     
                 />
                 <TouchableOpacity 
@@ -65,6 +66,13 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
     },
+    labels : {
+        fontSize: 22,
+        fontWeight: 'bold',
+        alignSelf: 'flex-start',
+        marginLeft: 30,
+        marginTop: 40,
+    },
     inputField : {
         borderColor: 'gray',
         borderWidth: 1,
@@ -73,7 +81,7 @@ const styles = StyleSheet.create({
         marginLeft: 30,
         marginRight: 30,
         marginBottom: 40,
-        marginTop: 40,
+        marginTop: 10,
         padding: 8,
         fontSize: 22,  
     },
