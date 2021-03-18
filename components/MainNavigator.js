@@ -8,21 +8,23 @@ import NewQuestionView from './NewQuestionView';
 const Stack = createStackNavigator()
 
 const MainNavigator = () => (
-    <Stack.Navigator>
+    <Stack.Navigator
+        screenOptions = {{
+            headerStyle: {
+                backgroundColor: '#084B8A',
+            },
+            headerTintColor: '#E6E9F2',
+            headerTitleStyle: {
+                fontSize: 18,
+                fontWeight: 'bold'
+            }
+        }}
+    >
         <Stack.Screen 
             name = 'Home' 
             component = {NaviTab}
             options = {{
                 title : 'My decks',
-                headerStyle: {
-                    backgroundColor: '#084B8A',
-                    
-                },
-                headerTintColor: '#E6E9F2',
-                headerTitleStyle: {
-                    fontSize: 18,
-                    fontWeight: 'bold'
-                }
             }}
             
         />
