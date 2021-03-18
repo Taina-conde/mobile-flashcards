@@ -25,7 +25,7 @@ class DeckView extends React.Component {
                     onPress = {() => navigation.navigate(
                         'Quiz details', 
                         { deckId })}>
-                    <Text>Start quiz</Text>
+                    <Text style = {styles.buttonText}>Start quiz</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -45,11 +45,15 @@ const styles = StyleSheet.create({
     numCards : {
         fontSize: 22, 
         color: '#848484',
+        marginBottom: 100,
     },
     addBtn : {
         padding: 20,
-        margin: 20,
-        backgroundColor: '#01A9DB',
+        marginLeft: 60,
+        marginRight: 60,
+        marginTop: 100,
+        alignSelf: 'stretch',
+        backgroundColor: 'gray',
         borderRadius: 30,
         shadowColor: `rgba(0,0,0, 0.24)`,
         shadowOffset: {
@@ -60,11 +64,28 @@ const styles = StyleSheet.create({
         shadowOpacity: 1,
         
     },
+    startBtn : {
+        padding: 20,
+        marginLeft: 60,
+        marginRight: 60,
+        marginTop: 30,
+        backgroundColor: '#01A9DB',
+        alignSelf: 'stretch',
+        borderRadius: 30,
+        shadowColor: `rgba(0,0,0, 0.24)`,
+        shadowOffset: {
+            width: 0, 
+            height: 3,
+        },
+        shadowRadius: 6,
+        shadowOpacity: 1,
+    },
     buttonText : {
         color: '#ffffff',
         fontSize: 16,
         textTransform: 'uppercase',
-        fontWeight: 'bold'
+        fontWeight: 'bold',
+        textAlign: 'center',
     }
 })
 function mapStateToProps(decks) {
