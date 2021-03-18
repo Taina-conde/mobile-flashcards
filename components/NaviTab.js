@@ -12,9 +12,9 @@ const NaviTab = () => (
     screenOptions = { ({ route }) => ({
       tabBarIcon: ({ color }) => {
         if (route.name === 'Decks') {
-          return <MaterialCommunityIcons name="cards" size={24} color={color} />
+          return <MaterialCommunityIcons name="cards" size={30} color={color} />
         } 
-        return <Entypo name="plus" size={24} color={color} />
+        return <Entypo name="plus" size={30} color={color} />
       }
     })}
     tabBarOptions = {{
