@@ -8,6 +8,7 @@ import { createStore } from 'redux'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import middleware from './middleware'
+import FlashcardsStatusBar from './components/FlashcardsStatusBar'
 
 
 
@@ -15,7 +16,7 @@ export default function App() {
   return (
     <Provider store = {createStore(reducer, middleware)}>
       <NavigationContainer >
-        <StatusBar style="auto" />
+        <FlashcardsStatusBar/>
         <MainNavigator/>
       </NavigationContainer>
     </Provider>
