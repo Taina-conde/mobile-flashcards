@@ -60,8 +60,8 @@ class QuizView extends React.Component {
         
         return (
             <View style = {styles.container}>
-                <Text>QuizView</Text>
-                <Text>{`${currentCardIndex + 1}/${cardsTotal}`}</Text>
+                
+                <Text style = {styles.cardsLeft}>{`${currentCardIndex + 1}/${cardsTotal}`}</Text>
                 <View>
                     <Text>{currentCard.question}</Text>
                     <TouchableOpacity>
@@ -88,9 +88,14 @@ class QuizView extends React.Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
     },
+    cardsLeft : {
+        alignSelf: 'flex-start',
+        fontSize: 22,
+        color: '#084B8A',
+        padding: 20,
+    }
 
 })
 function mapStateToProps(decks) {
