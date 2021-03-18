@@ -60,8 +60,9 @@ const styles = StyleSheet.create({
         alignItems: 'stretch', 
     },
     noDecks : {
-        flex: 1,
-        fontSize: 22,
+        alignSelf: 'center',
+        fontSize: 46,
+        
 
     },
     deckBox : {
