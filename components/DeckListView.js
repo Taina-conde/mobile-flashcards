@@ -23,7 +23,9 @@ class DeckListView extends React.Component {
             <TouchableOpacity style= {styles.deckBox} onPress = {() => navigation.navigate('Deck details', { deckId: item.title})}>
                 <Text style = {styles.deckTitle}>{item.title }</Text>
                 <Text style = {styles.numCards}>
-                    {`${item.questions.length} ${item.questions.length === 1 ? 'card': 'cards' }`}</Text>
+                    {item.questions.length === 1 ? 
+                    `${item.questions.length} card`: 
+                    `${item.questions.length} cards`}</Text>
             </TouchableOpacity>
         )
     }
