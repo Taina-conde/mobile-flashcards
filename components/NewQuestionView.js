@@ -52,6 +52,7 @@ class NewQuestionView extends React.Component {
                     
                 />
                 <TouchableOpacity 
+                    disabled = {!(this.state.question && this.state.answer)}
                     style = {styles.submitBtn}
                     onPress = {this.handleSubmit}>
                     <Text style = {styles.submitText}>SUBMIT</Text>
