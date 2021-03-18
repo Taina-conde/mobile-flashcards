@@ -53,9 +53,20 @@ class NewQuestionView extends React.Component {
                 />
                 <TouchableOpacity 
                     disabled = {!(this.state.question && this.state.answer)}
-                    style = {styles.submitBtn}
+                    style = {[styles.submitBtn, {
+                        backgroundColor: !(this.state.question && this.state.answer)
+                            ? "rgba(4, 180, 134, 0.4)"
+                            : '#04B486'
+                    }]}
                     onPress = {this.handleSubmit}>
-                    <Text style = {styles.submitText}>SUBMIT</Text>
+                    <Text style = {[styles.submitText, { 
+                        color: !(this.state.question && this.state.answer) 
+                            ? 'rgba(255, 255, 255, 0.7)'
+                            : '#ffffff'
+                            }]}
+                    >
+                        SUBMIT
+                    </Text>
                 </TouchableOpacity>
             </View>
         )
@@ -87,7 +98,6 @@ const styles = StyleSheet.create({
         fontSize: 22,  
     },
     submitBtn : {
-        backgroundColor: '#04B486',
         borderRadius: 40,
         alignSelf: 'stretch',
         marginLeft: 80,
@@ -104,10 +114,10 @@ const styles = StyleSheet.create({
     },
     submitText : {
         fontSize: 22,
-        color: '#ffffff',
         textAlign: 'center',
         fontWeight: 'bold',
     }
+
 
 })
 export default connect()(NewQuestionView)
