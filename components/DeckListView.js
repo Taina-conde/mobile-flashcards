@@ -37,7 +37,7 @@ class DeckListView extends React.Component {
             <View style = {styles.container}>
                 
                 { (decksKeys.length === 0)
-                  ? <Text style = {styles.deckBox}> 0 decks</Text>
+                  ? <Text style = {styles.noDecks}> 0 decks</Text>
                   : <FlatList 
                         
                         data = {data}
@@ -58,6 +58,11 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'stretch', 
+    },
+    noDecks : {
+        flex: 1,
+        fontSize: 22,
+
     },
     deckBox : {
         height: 100,
