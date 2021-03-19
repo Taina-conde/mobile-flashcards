@@ -5,9 +5,17 @@ import {
     StyleSheet, 
     TextInput,
     TouchableOpacity,
+    KeyboardAvoidingView
 } from 'react-native';
 import { addDeck } from '../actions'
 import { connect } from 'react-redux'
+import { 
+    lightGray, 
+    green, 
+    fadedGreen, 
+    white, 
+    fadedWhite 
+} from '../utils/colors'
 
 class NewDeckView extends React.Component {
     state = {
@@ -39,22 +47,77 @@ class NewDeckView extends React.Component {
         })
     }
     render(){
+        const { input } = this.state;
         return (
-            <View>
-                <Text>NewDeckView</Text>
-                <Text>What is the title of your new deck?</Text>
+            <KeyboardAvoidingView 
+                style = {styles.container}
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+            >
+                
+                <Text style = {styles.text}>What is the title of your new deck?</Text>
                 
                 <TextInput
+                    style = {styles.inputField}
                     onChangeText = {this.handleTextChange}
                     value= {this.state.input}
                     placeholder = "Deck title"
                 />
-                <TouchableOpacity onPress = {this.handleSubmit}>
-                    <Text>Create deck</Text>
+                <TouchableOpacity 
+                    disabled = {!input}
+                    style = {[styles.createBtn, {
+                        backgroundColor: !input ? fadedGreen : green
+                    }]}
+                    onPress = {this.handleSubmit}>
+                    <Text style = {[styles.createText, {
+                        color: !input ? fadedWhite : white
+                    }]}>Create deck</Text>
                 </TouchableOpacity>
                 
-            </View>
+            </KeyboardAvoidingView>
         )
     }
 }
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 30
+    },
+    text : {
+        fontSize: 22,
+        fontWeight: 'bold'
+    },
+    inputField : {
+        borderWidth: 1,
+        borderColor: lightGray,
+        padding: 8,
+        borderRadius: 5,
+        alignSelf: 'stretch',
+        fontSize: 22,
+        marginBottom: 60,
+        marginTop: 60,
+    },
+    createBtn : {
+        borderRadius: 40,
+        alignSelf: 'stretch',
+        marginLeft: 80,
+        marginRight: 80,
+        marginTop: 90,
+        padding: 20,
+        shadowColor: `rgba(0,0,0, 0.24)`,
+        shadowOffset: {
+            width: 0, 
+            height: 3,
+        },
+        shadowRadius: 6,
+        shadowOpacity: 1,
+    },
+    createText : {
+        fontSize: 22,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        textTransform: 'uppercase'
+    }
+})
 export default connect()(NewDeckView)
