@@ -61,17 +61,27 @@ class QuizView extends React.Component {
         return (
             <View style = {styles.container}>
                 
-                <Text style = {styles.cardsLeft}>{`${currentCardIndex + 1}/${cardsTotal}`}</Text>
+                <Text style = {styles.cardsLeft}>
+                    {`${currentCardIndex + 1}/${cardsTotal}`}
+                </Text>
                 <View>
-                    <Text>{currentCard.question}</Text>
+                    <Text style = {styles.mainText}>
+                        {currentCard.question}
+                    </Text>
                     <TouchableOpacity>
-                        <Text>View answer</Text>
+                        <Text style = {styles.flipText}>
+                            Show answer
+                        </Text>
                     </TouchableOpacity>
                 </View>
                 <View>
-                    <Text>{currentCard.answer}</Text>
+                    <Text style = {styles.mainText}>
+                        {currentCard.answer}
+                    </Text>
                     <TouchableOpacity>
-                        <Text>View question</Text>
+                        <Text style = {styles.flipText}>
+                            Show question
+                        </Text>
                     </TouchableOpacity>
                 </View>
                 <TouchableOpacity onPress = {() => this.handleOnPress('correct')}>
@@ -89,12 +99,22 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems: 'center',
+        padding: 20,
     },
     cardsLeft : {
         alignSelf: 'flex-start',
         fontSize: 22,
         color: '#084B8A',
-        padding: 20,
+        
+    },
+    mainText: {
+        fontSize: 30,
+        fontWeight: 'bold',
+        marginTop: 200,
+        marginBottom: 40,
+    },
+    flipText: {
+        
     }
 
 })
