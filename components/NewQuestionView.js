@@ -5,6 +5,7 @@ import {
     StyleSheet, 
     TextInput,
     TouchableOpacity,
+    KeyboardAvoidingView
  } from 'react-native'
 import { addCardToDeck } from '../actions'
 import { connect } from 'react-redux'
@@ -41,7 +42,10 @@ class NewQuestionView extends React.Component {
     }
     render(){
         return (
-            <View style = {styles.container}>
+            <KeyboardAvoidingView 
+                style = {styles.container}
+                behavior={Platform.OS === "ios" ? "padding" : "height"}
+            >
                 <Text style = {styles.labels}>Enter new question: </Text>
                 <TextInput
                     style = {styles.inputField}
@@ -74,7 +78,7 @@ class NewQuestionView extends React.Component {
                         SUBMIT
                     </Text>
                 </TouchableOpacity>
-            </View>
+            </KeyboardAvoidingView>
         )
     }
 }
@@ -108,8 +112,9 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
         marginLeft: 80,
         marginRight: 80,
-        marginTop: 100,
+        marginTop: 50,
         padding: 20,
+        marginBottom: 60,
         shadowColor: `rgba(0,0,0, 0.24)`,
         shadowOffset: {
             width: 0, 

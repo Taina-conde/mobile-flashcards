@@ -104,6 +104,7 @@ const styles = StyleSheet.create({
         marginLeft: 80,
         marginRight: 80,
         marginTop: 90,
+        marginBottom: 40,
         padding: 20,
         shadowColor: `rgba(0,0,0, 0.24)`,
         shadowOffset: {
