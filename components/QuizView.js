@@ -2,6 +2,11 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import NoCards from './NoCards'
+import { lightBlue,
+     green, 
+     white,
+     red,
+} from '../utils/colors'
 
 
 class QuizView extends React.Component {
@@ -84,11 +89,21 @@ class QuizView extends React.Component {
                         </Text>
                     </TouchableOpacity>
                 </View>
-                <TouchableOpacity onPress = {() => this.handleOnPress('correct')}>
-                    <Text>Correct</Text>
+                <TouchableOpacity 
+                    style = {[styles.answerBtn, { 
+                        backgroundColor: green
+                    }]}
+                    onPress = {() => this.handleOnPress('correct')}
+                >
+                    <Text style = {styles.btnText}>Correct</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress = {() => this.handleOnPress('incorrect')}>
-                    <Text>Incorrect</Text>
+                <TouchableOpacity 
+                    style = {[styles.answerBtn, {
+                        backgroundColor: red
+                    }]}
+                    onPress = {() => this.handleOnPress('incorrect')}
+                >
+                    <Text style = {styles.btnText}>Incorrect</Text>
                 </TouchableOpacity>
             </View>
         )
@@ -108,14 +123,39 @@ const styles = StyleSheet.create({
         
     },
     mainText: {
-        fontSize: 30,
+        fontSize: 38,
         fontWeight: 'bold',
         marginTop: 200,
-        marginBottom: 40,
+        marginBottom: 30,
     },
     flipText: {
-        
+        color: lightBlue,
+        fontSize: 18,
+        fontWeight: 'bold',
+    },
+    answerBtn : {
+        borderRadius: 40,
+        alignSelf: 'stretch',
+        marginLeft: 80,
+        marginRight: 80,
+        marginTop: 20,
+        padding: 20,
+        shadowColor: `rgba(0,0,0, 0.24)`,
+        shadowOffset: {
+            width: 0, 
+            height: 3,
+        },
+        shadowRadius: 6,
+        shadowOpacity: 1,
+    },
+    btnText : {
+        fontSize: 22,
+        textAlign: 'center',
+        fontWeight: 'bold',
+        textTransform: 'uppercase',
+        color: white,
     }
+
 
 })
 function mapStateToProps(decks) {
