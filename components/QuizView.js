@@ -1,5 +1,10 @@
 import React from 'react' 
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { View, 
+    Text, 
+    StyleSheet, 
+    TouchableOpacity,
+    Animated
+} from 'react-native'
 import { connect } from 'react-redux'
 import NoCards from './NoCards'
 import { lightBlue,
@@ -13,6 +18,8 @@ class QuizView extends React.Component {
     state = {
         countCorrect: 0,
         currentCardIndex: 0,
+        flipAnim: new Animated.Value(0),
+        showQuestion: true,
     }
     handleOnPress(userAnswer) {
         console.log('userAnswer', userAnswer)
@@ -37,6 +44,13 @@ class QuizView extends React.Component {
     handleBackToDeck = () => {
         const { navigation } = this.props;
         navigation.goBack()
+    }
+    flip = ()=> {
+        const { flipAnim } = this.state;
+        Animated.sequence([
+            Animated.timing(flipAnim, {toValue: 1.04, duration: 200}),
+            Animated.spring(flipAnim, {toValue: 1, friction: 4})
+        ]).start()
     }
     render() {
         const { route, decks } = this.props;
