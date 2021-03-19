@@ -18,7 +18,8 @@ class QuizView extends React.Component {
     state = {
         countCorrect: 0,
         currentCardIndex: 0,
-        flipAnim: new Animated.Value(1),
+        questionAnim: new Animated.Value(1),
+        answerAnim : new Animated.Value(0),
         showQuestion: true,
     }
     handleOnPress(userAnswer) {
@@ -45,18 +46,45 @@ class QuizView extends React.Component {
         const { navigation } = this.props;
         navigation.goBack()
     }
-    flip = ()=> {
-        const { flipAnim, showQuestion } = this.state;
+    flipToAnswer = ()=> {
+        const { questionAnim, showQuestion, answerAnim } = this.state;
         console.log('showQuestion: ', showQuestion)
-        console.log('flipAnim', flipAnim)
-        Animated.timing(flipAnim, {toValue: 0, duration: 5000} )
-        {/*Animated.sequence([
-            Animated.timing(flipAnim, {toValue: 1.04, duration: 200, useNativeDriver: true}),
-            Animated.spring(flipAnim, {toValue: 0, friction: 4})
-        ]).start()*/}
-        this.setState(()=> ({
-            showQuestion: !showQuestion,
-        }))
+        console.log('questionAnim', questionAnim)
+        console.log('answerAnim', answerAnim)
+        
+        Animated.timing(questionAnim, {toValue: 0, duration: 5000, useNativeDriver: true})
+        .start(({finished}) => {
+
+            console.log('finished question animation', finished)
+            Animated.timing(answerAnim, {toValue: 1, duration: 5000, useNativeDriver: true})
+            .start(({finished}) => {
+                console.log('finished answer animation', finished)
+                console.log('flip to answer questionAnim', questionAnim)
+                console.log('flip to answer answerAnim', answerAnim)
+                this.setState(()=> ({
+                    showQuestion: !showQuestion,
+                    
+                }))
+            })
+        })
+    }
+    flipToQuestion = () => {
+        const { answerAnim, showQuestion, questionAnim } = this.state;
+        console.log('showQuestion: ', showQuestion)
+        console.log('answerAnim', answerAnim)
+        Animated.timing(answerAnim, {toValue: 0, duration: 5000, useNativeDriver: true})
+        .start(({finished}) => {
+
+            console.log('finished answer animation', finished)
+            Animated.timing(questionAnim, {toValue: 1, duration: 5000, useNativeDriver: true})
+            .start(({finished}) => {
+                console.log('finished question animation', finished)
+                this.setState(()=> ({
+                    showQuestion: !showQuestion,
+                    
+                }))
+            })
+        })
     }
     render() {
         const { route, decks } = this.props;
@@ -64,7 +92,8 @@ class QuizView extends React.Component {
         const { 
             countCorrect, 
             currentCardIndex, 
-            flipAnim, 
+            questionAnim, 
+            answerAnim,
             showQuestion 
         } = this.state;
         const deck = decks[deckId];
@@ -96,29 +125,35 @@ class QuizView extends React.Component {
                 </Text>
                 {showQuestion 
                     ? (<Animated.View 
-                        style = {[styles.animatedContainer, {transform: [{scale: flipAnim}]}]}
+                        style = {[styles.animatedContainer, {opacity: questionAnim}]}
                     >
                         <Text style = {styles.mainText}>
                             {currentCard.question}
                         </Text>
-                        <TouchableOpacity onPress = {this.flip}>
-                            <Text style = {styles.flipText}>
-                                Show answer
-                            </Text>
-                        </TouchableOpacity>
+                        
                     </Animated.View>)
                     : (<Animated.View
-                        style = {[styles.animatedContainer, {transform: [{scale: flipAnim}]}]}
+                        style = {[styles.animatedContainer, {opacity: answerAnim}]}
                     >
                         <Text style = {styles.mainText}>
                             {currentCard.answer}
                         </Text>
-                        <TouchableOpacity onPress = {this.flip}>
+                        
+                    </Animated.View>)
+                }
+                { showQuestion 
+                    ? (<TouchableOpacity onPress = {this.flipToAnswer}>
+                        <Text style = {styles.flipText}>
+                            Show answer
+                        </Text>
+                    </TouchableOpacity>)
+                    : (
+                        <TouchableOpacity onPress = {this.flipToQuestion}>
                             <Text style = {styles.flipText}>
                                 Show question
                             </Text>
                         </TouchableOpacity>
-                    </Animated.View>)
+                    )
                 }
                 <TouchableOpacity 
                     style = {[styles.answerBtn, { 
