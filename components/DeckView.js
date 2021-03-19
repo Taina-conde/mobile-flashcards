@@ -1,6 +1,7 @@
 import React from 'react' 
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
+import { gray, lightBlue, white, blue, lightGray } from '../utils/colors';
 
 class DeckView extends React.Component {
     render(){
@@ -40,11 +41,11 @@ const styles = StyleSheet.create({
     },
     deckTitle : {
         fontSize: 46,
-        color: '#084B8A',
+        color: blue,
     },
     numCards : {
         fontSize: 22, 
-        color: '#848484',
+        color: lightGray,
         marginBottom: 100,
     },
     addBtn : {
@@ -53,7 +54,7 @@ const styles = StyleSheet.create({
         marginRight: 60,
         marginTop: 100,
         alignSelf: 'stretch',
-        backgroundColor: 'gray',
+        backgroundColor: gray,
         borderRadius: 30,
         shadowColor: `rgba(0,0,0, 0.24)`,
         shadowOffset: {
@@ -69,7 +70,7 @@ const styles = StyleSheet.create({
         marginLeft: 60,
         marginRight: 60,
         marginTop: 30,
-        backgroundColor: '#01A9DB',
+        backgroundColor: lightBlue,
         alignSelf: 'stretch',
         borderRadius: 30,
         shadowColor: `rgba(0,0,0, 0.24)`,
@@ -81,7 +82,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 1,
     },
     buttonText : {
-        color: '#ffffff',
+        color: white,
         fontSize: 16,
         textTransform: 'uppercase',
         fontWeight: 'bold',
