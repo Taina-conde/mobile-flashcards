@@ -5,9 +5,10 @@ import {
     StyleSheet, 
     TouchableOpacity,
     FlatList,
-} from 'react-native'
-import { connect } from 'react-redux'
+} from 'react-native';
+import { connect } from 'react-redux';
 import { receiveDecks } from '../actions';
+import {  white, lightGray } from '../utils/colors';
 
 
 class DeckListView extends React.Component {
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
     deckBox : {
         height: 100,
         margin: 20,
-        backgroundColor: '#ffff',
+        backgroundColor: white,
         padding: 20,
         shadowColor: `rgba(0,0,0, 0.24)`,
           shadowOffset: {
@@ -88,7 +89,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
     numCards : {
-        color: '#848484',
+        color: lightGray,
     }
 
     

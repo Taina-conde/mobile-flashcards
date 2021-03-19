@@ -4,6 +4,7 @@ import NaviTab from './NaviTab'
 import DeckView from './DeckView';
 import QuizView from './QuizView';
 import NewQuestionView from './NewQuestionView';
+import { blue, white } from '../utils/colors'
 
 const Stack = createStackNavigator()
 
@@ -11,9 +12,9 @@ const MainNavigator = () => (
     <Stack.Navigator
         screenOptions = {{
             headerStyle: {
-                backgroundColor: '#084B8A',
+                backgroundColor: blue,
             },
-            headerTintColor: '#E6E9F2',
+            headerTintColor: white,
             headerTitleStyle: {
                 fontSize: 18,
                 fontWeight: 'bold'
