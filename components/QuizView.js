@@ -11,6 +11,8 @@ import { lightBlue,
      green, 
      white,
      red,
+     lightGray,
+     gray
 } from '../utils/colors'
 
 
@@ -105,13 +107,31 @@ class QuizView extends React.Component {
         if (currentCardIndex >= deck.questions.length ) {
             return (
                 <View style = {styles.container}>
-                    <Text>Score</Text>
-                    <Text>{`${((countCorrect/cardsTotal)*100).toFixed(1)}%`}</Text>
-                    <TouchableOpacity onPress = {this.handleRestart}>
-                        <Text>Restart Quiz</Text>
+                    <Text style = {styles.scoreText}>Score</Text>
+                    <Text style = {styles.scoreResult}>{`${((countCorrect/cardsTotal)*100).toFixed(1)}%`}</Text>
+                    <TouchableOpacity 
+                        style = {[styles.btn, {
+                            backgroundColor: lightBlue,
+                        }]}
+                        onPress = {this.handleRestart}
+                    >
+                        <Text 
+                            style = {styles.btnText}
+                        >
+                            Restart Quiz
+                        </Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress = {this.handleBackToDeck}>
-                        <Text>Back to Deck</Text>
+                    <TouchableOpacity 
+                        style = {[styles.btn, {
+                            backgroundColor: gray
+                        }]}
+                        onPress = {this.handleBackToDeck}
+                    >
+                        <Text 
+                            style = {styles.btnText}
+                        >
+                            Back to Deck
+                        </Text>
                     </TouchableOpacity>
                 </View>
             )
@@ -156,7 +176,7 @@ class QuizView extends React.Component {
                     )
                 }
                 <TouchableOpacity 
-                    style = {[styles.answerBtn, { 
+                    style = {[styles.btn, { 
                         backgroundColor: green
                     }]}
                     onPress = {() => this.handleOnPress('correct')}
@@ -164,7 +184,7 @@ class QuizView extends React.Component {
                     <Text style = {styles.btnText}>Correct</Text>
                 </TouchableOpacity>
                 <TouchableOpacity 
-                    style = {[styles.answerBtn, {
+                    style = {[styles.btn, {
                         backgroundColor: red
                     }]}
                     onPress = {() => this.handleOnPress('incorrect')}
@@ -201,7 +221,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
     },
-    answerBtn : {
+    btn : {
         borderRadius: 40,
         alignSelf: 'stretch',
         marginLeft: 80,
