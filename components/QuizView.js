@@ -265,7 +265,8 @@ const styles = StyleSheet.create({
     scoreText: {
         fontSize: 46,
         fontWeight: 'bold',
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',
+        color: blue
 
     },
     resultsBox: {
