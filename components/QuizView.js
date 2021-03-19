@@ -175,22 +175,24 @@ class QuizView extends React.Component {
                         </TouchableOpacity>
                     )
                 }
-                <TouchableOpacity 
-                    style = {[styles.btn, { 
-                        backgroundColor: green
-                    }]}
-                    onPress = {() => this.handleOnPress('correct')}
-                >
-                    <Text style = {styles.btnText}>Correct</Text>
-                </TouchableOpacity>
-                <TouchableOpacity 
-                    style = {[styles.btn, {
-                        backgroundColor: red
-                    }]}
-                    onPress = {() => this.handleOnPress('incorrect')}
-                >
-                    <Text style = {styles.btnText}>Incorrect</Text>
-                </TouchableOpacity>
+                <View style = {styles.btnGroup}>
+                    <TouchableOpacity 
+                        style = {[styles.btn, { 
+                            backgroundColor: green
+                        }]}
+                        onPress = {() => this.handleOnPress('correct')}
+                    >
+                        <Text style = {styles.btnText}>Correct</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                        style = {[styles.btn, {
+                            backgroundColor: red
+                        }]}
+                        onPress = {() => this.handleOnPress('incorrect')}
+                    >
+                        <Text style = {styles.btnText}>Incorrect</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         )
     }
@@ -201,6 +203,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         padding: 20,
+        justifyContent: 'space-around'
     },
     cardsLeft : {
         alignSelf: 'flex-start',
@@ -221,13 +224,17 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textAlign: 'center',
     },
-    btn : {
-        borderRadius: 40,
-        alignSelf: 'stretch',
+    btnGroup : {
         marginLeft: 80,
         marginRight: 80,
         marginTop: 20,
-        padding: 20,
+        marginBottom: 50,
+        alignSelf: 'stretch',
+    },
+    btn : {
+        borderRadius: 40,   
+        padding: 20,   
+        marginBottom: 20,  
         shadowColor: `rgba(0,0,0, 0.24)`,
         shadowOffset: {
             width: 0, 
@@ -247,6 +254,12 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: 'black',
         alignSelf: 'stretch',
+    },
+    scoreText: {
+        fontSize: 36,
+        fontWeight: 'bold',
+
+
     }
 
 
