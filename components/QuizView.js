@@ -12,7 +12,8 @@ import { lightBlue,
      white,
      red,
      lightGray,
-     gray
+     gray,
+     blue
 } from '../utils/colors'
 
 
@@ -108,7 +109,11 @@ class QuizView extends React.Component {
             return (
                 <View style = {styles.container}>
                     <Text style = {styles.scoreText}>Score</Text>
-                    <Text style = {styles.scoreResult}>{`${((countCorrect/cardsTotal)*100).toFixed(1)}%`}</Text>
+                    <View style = {styles.resultsBox}>
+                        <Text style = {styles.scoreResult}>
+                            {`${((countCorrect/cardsTotal)*100).toFixed(0)}%`}
+                        </Text>
+                    </View>
                     <View style = {styles.btnGroup}>
                         <TouchableOpacity 
                             style = {[styles.btn, {
@@ -258,10 +263,33 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
     },
     scoreText: {
-        fontSize: 36,
+        fontSize: 46,
         fontWeight: 'bold',
+        textTransform: 'uppercase'
 
-
+    },
+    resultsBox: {
+        height: 200,
+        width: 200,
+        backgroundColor: white,
+        borderRadius: 100,
+        borderColor: blue,
+        borderWidth: 5,
+        shadowColor: `rgba(0,0,0, 0.24)`,
+        shadowOffset: {
+            width: 0, 
+            height: 3,
+        },
+        shadowRadius: 6,
+        shadowOpacity: 1,
+    },
+    scoreResult: {
+        lineHeight: 200,
+        textAlign: 'center',
+        fontSize: 39,
+        fontWeight: 'bold',
+        color: lightBlue,
+        
     }
 
 
