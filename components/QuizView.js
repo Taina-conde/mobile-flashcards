@@ -18,7 +18,7 @@ class QuizView extends React.Component {
     state = {
         countCorrect: 0,
         currentCardIndex: 0,
-        flipAnim: new Animated.Value(0),
+        flipAnim: new Animated.Value(1),
         showQuestion: true,
     }
     handleOnPress(userAnswer) {
@@ -46,16 +46,27 @@ class QuizView extends React.Component {
         navigation.goBack()
     }
     flip = ()=> {
-        const { flipAnim } = this.state;
-        Animated.sequence([
-            Animated.timing(flipAnim, {toValue: 1.04, duration: 200}),
-            Animated.spring(flipAnim, {toValue: 1, friction: 4})
-        ]).start()
+        const { flipAnim, showQuestion } = this.state;
+        console.log('showQuestion: ', showQuestion)
+        console.log('flipAnim', flipAnim)
+        Animated.timing(flipAnim, {toValue: 0, duration: 5000} )
+        {/*Animated.sequence([
+            Animated.timing(flipAnim, {toValue: 1.04, duration: 200, useNativeDriver: true}),
+            Animated.spring(flipAnim, {toValue: 0, friction: 4})
+        ]).start()*/}
+        this.setState(()=> ({
+            showQuestion: !showQuestion,
+        }))
     }
     render() {
         const { route, decks } = this.props;
         const { deckId } = route.params;
-        const { countCorrect, currentCardIndex } = this.state;
+        const { 
+            countCorrect, 
+            currentCardIndex, 
+            flipAnim, 
+            showQuestion 
+        } = this.state;
         const deck = decks[deckId];
         if (deck.questions.length === 0) {
             return <NoCards style = {styles.container}/>
@@ -83,26 +94,32 @@ class QuizView extends React.Component {
                 <Text style = {styles.cardsLeft}>
                     {`${currentCardIndex + 1}/${cardsTotal}`}
                 </Text>
-                <View>
-                    <Text style = {styles.mainText}>
-                        {currentCard.question}
-                    </Text>
-                    <TouchableOpacity>
-                        <Text style = {styles.flipText}>
-                            Show answer
+                {showQuestion 
+                    ? (<Animated.View 
+                        style = {[styles.animatedContainer, {transform: [{scale: flipAnim}]}]}
+                    >
+                        <Text style = {styles.mainText}>
+                            {currentCard.question}
                         </Text>
-                    </TouchableOpacity>
-                </View>
-                <View>
-                    <Text style = {styles.mainText}>
-                        {currentCard.answer}
-                    </Text>
-                    <TouchableOpacity>
-                        <Text style = {styles.flipText}>
-                            Show question
+                        <TouchableOpacity onPress = {this.flip}>
+                            <Text style = {styles.flipText}>
+                                Show answer
+                            </Text>
+                        </TouchableOpacity>
+                    </Animated.View>)
+                    : (<Animated.View
+                        style = {[styles.animatedContainer, {transform: [{scale: flipAnim}]}]}
+                    >
+                        <Text style = {styles.mainText}>
+                            {currentCard.answer}
                         </Text>
-                    </TouchableOpacity>
-                </View>
+                        <TouchableOpacity onPress = {this.flip}>
+                            <Text style = {styles.flipText}>
+                                Show question
+                            </Text>
+                        </TouchableOpacity>
+                    </Animated.View>)
+                }
                 <TouchableOpacity 
                     style = {[styles.answerBtn, { 
                         backgroundColor: green
@@ -141,11 +158,13 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginTop: 200,
         marginBottom: 30,
+        textAlign: 'center',
     },
     flipText: {
         color: lightBlue,
         fontSize: 18,
         fontWeight: 'bold',
+        textAlign: 'center',
     },
     answerBtn : {
         borderRadius: 40,
@@ -168,6 +187,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         textTransform: 'uppercase',
         color: white,
+    },
+    animatedContainer : {
+        borderWidth: 1,
+        borderColor: 'black',
+        alignSelf: 'stretch',
     }
 
 
