@@ -4,6 +4,7 @@ import DeckListView from './DeckListView';
 import NewDeckView from './NewDeckView';
 import { MaterialCommunityIcons, Entypo } from '@expo/vector-icons';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { blue, lightBlue, white } from '../utils/colors';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,10 +19,10 @@ const NaviTab = () => (
       }
     })}
     tabBarOptions = {{
-        activeTintColor: Platform.OS === 'ios' ? '#084B8A' : '#E6E9F2',
+        activeTintColor: Platform.OS === 'ios' ? blue : white,
         style : {
           height: 100,
-          backgroundColor: Platform.OS === 'ios' ? '#E6E9F2' : '#084B8A',
+          backgroundColor: Platform.OS === 'ios' ? white : blue,
           shadowColor: `rgba(0,0,0, 0.24)`,
           shadowOffset: {
             width: 0, 

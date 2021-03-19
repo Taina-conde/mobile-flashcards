@@ -8,6 +8,12 @@ import {
  } from 'react-native'
 import { addCardToDeck } from '../actions'
 import { connect } from 'react-redux'
+import { green, 
+    lightGray, 
+    fadedGreen, 
+    fadedWhite, 
+    white
+} from '../utils/colors';
 
 class NewQuestionView extends React.Component {
     state = {
@@ -55,14 +61,14 @@ class NewQuestionView extends React.Component {
                     disabled = {!(this.state.question && this.state.answer)}
                     style = {[styles.submitBtn, {
                         backgroundColor: !(this.state.question && this.state.answer)
-                            ? "rgba(4, 180, 134, 0.4)"
-                            : '#04B486'
+                            ? fadedGreen
+                            : green
                     }]}
                     onPress = {this.handleSubmit}>
                     <Text style = {[styles.submitText, { 
                         color: !(this.state.question && this.state.answer) 
-                            ? 'rgba(255, 255, 255, 0.7)'
-                            : '#ffffff'
+                            ? fadedWhite
+                            : white
                             }]}
                     >
                         SUBMIT
@@ -86,7 +92,7 @@ const styles = StyleSheet.create({
         marginTop: 40,
     },
     inputField : {
-        borderColor: 'gray',
+        borderColor: lightGray,
         borderWidth: 1,
         borderRadius: 5,
         alignSelf: 'stretch',

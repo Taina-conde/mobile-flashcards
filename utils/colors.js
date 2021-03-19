@@ -6,3 +6,4 @@ export const fadedGreen = "rgba(4, 180, 134, 0.4)";
 export const green = '#04B486';
 export const lightGray = '#848484';
 export const gray = 'gray';
+export const fadedBlue = '#E6E9F2'
