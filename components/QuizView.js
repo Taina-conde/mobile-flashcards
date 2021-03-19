@@ -109,30 +109,32 @@ class QuizView extends React.Component {
                 <View style = {styles.container}>
                     <Text style = {styles.scoreText}>Score</Text>
                     <Text style = {styles.scoreResult}>{`${((countCorrect/cardsTotal)*100).toFixed(1)}%`}</Text>
-                    <TouchableOpacity 
-                        style = {[styles.btn, {
-                            backgroundColor: lightBlue,
-                        }]}
-                        onPress = {this.handleRestart}
-                    >
-                        <Text 
-                            style = {styles.btnText}
+                    <View style = {styles.btnGroup}>
+                        <TouchableOpacity 
+                            style = {[styles.btn, {
+                                backgroundColor: lightBlue,
+                            }]}
+                            onPress = {this.handleRestart}
                         >
-                            Restart Quiz
-                        </Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity 
-                        style = {[styles.btn, {
-                            backgroundColor: gray
-                        }]}
-                        onPress = {this.handleBackToDeck}
-                    >
-                        <Text 
-                            style = {styles.btnText}
+                            <Text 
+                                style = {styles.btnText}
+                            >
+                                Restart Quiz
+                            </Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity 
+                            style = {[styles.btn, {
+                                backgroundColor: gray
+                            }]}
+                            onPress = {this.handleBackToDeck}
                         >
-                            Back to Deck
-                        </Text>
-                    </TouchableOpacity>
+                            <Text 
+                                style = {styles.btnText}
+                            >
+                                Back to Deck
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
                 </View>
             )
         }
