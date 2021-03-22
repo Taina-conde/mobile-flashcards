@@ -3,9 +3,35 @@
 import * as Permissions from 'expo-permissions'
 
 const NOTIFICATION_KEY = 'MobileFlashcards : notifications'
+const DATA_STORAGE_KEY = 'MobileFlashcards : data'
 
- export function getDecks() {
+ AsyncStorage.setItem(DATA_STORAGE_KEY, JSON.stringify({}))
 
+ export function getDecks(){
+     return AsyncStorage.getItem(DATA_STORAGE_KEY)
+ }
+ export function getDecks(deckId) {
+     return AsyncStorage.getItem(DATA_STORAGE_KEY)
+        .then((results) => {
+            const data = JSON.parse(results)
+            return data[deckId]
+        })
+ }
+ export function saveDeckTitle(title) {
+     return AsyncStorage.mergeItem(DATA_STORAGE_KEY, JSON.stringify({
+         [title]: {
+             title,
+             questions: [],
+         }
+     }))
+ }
+ export function addCardToDeck(title, card) {
+     return AsyncStorage.mergeItem(DATA_STORAGE_KEY, JSON.stringify({
+         [title] : {
+            title,
+            questions: [title].questions.concat([card])
+         }
+     }))
  }
 
 
