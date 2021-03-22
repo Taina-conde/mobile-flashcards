@@ -15,6 +15,7 @@ import { green,
     fadedWhite, 
     white
 } from '../utils/colors';
+import { addCard } from '../utils/helpers'
 
 class NewQuestionView extends React.Component {
     state = {
@@ -36,7 +37,10 @@ class NewQuestionView extends React.Component {
         const { question, answer } = this.state;
         dispatch(addCardToDeck(question, answer, deckId))
         //add question in AsyncStorage
-        
+        addCard(deckId, {
+            question,
+            answer
+        })
         //route back to deck view
         navigation.goBack()
     }
