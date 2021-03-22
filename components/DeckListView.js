@@ -9,21 +9,27 @@ import {
 import { connect } from 'react-redux';
 import { receiveDecks } from '../actions';
 import {  white, lightGray } from '../utils/colors';
-import { getDecks } from '../utils/helpers'
+import { getDecks, DATA_STORAGE_KEY } from '../utils/helpers'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+
+
+
 
 
 class DeckListView extends React.Component {
     componentDidMount() {
-        const { dispatch, decks } = this.props;
-
+        const { dispatch, decks} = this.props;
+        console.log(DATA_STORAGE_KEY)
+        AsyncStorage.setItem(
+            DATA_STORAGE_KEY, JSON.stringify(decks)
+        )
         dispatch(receiveDecks(decks))
-        //
-       getDecks()
 
     }
     renderItem = ({ item }) => {
         const {navigation} = this.props
-        console.log('renderItem', item)
+        
         return (
             <TouchableOpacity style= {styles.deckBox} onPress = {() => navigation.navigate('Deck details', { deckId: item.title})}>
                 <Text style = {styles.deckTitle}>{item.title }</Text>

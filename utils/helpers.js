@@ -1,15 +1,13 @@
- import { AsyncStorage } from 'react-native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
  import * as Notifications from 'expo-notifications'
 import * as Permissions from 'expo-permissions'
 
 const NOTIFICATION_KEY = 'MobileFlashcards : notifications'
-const DATA_STORAGE_KEY = 'MobileFlashcards : data'
-
- AsyncStorage.setItem(DATA_STORAGE_KEY, JSON.stringify({}))
+export const DATA_STORAGE_KEY = 'MobileFlashcards : data'
  
 
  export function getDecks(){
-    AsyncStorage.getItem(DATA_STORAGE_KEY)
+    return AsyncStorage.setItem(DATA_STORAGE_KEY )
         .then((results) => JSON.parse(results))
  }
  export function getDeck(deckId) {
@@ -19,20 +17,19 @@ const DATA_STORAGE_KEY = 'MobileFlashcards : data'
             return data[deckId]
         })
  }
- export function saveDeckTitle(title) {
+ export function saveDeckTitle(title) {    
      return AsyncStorage.mergeItem(DATA_STORAGE_KEY, JSON.stringify({
-         [title]: {
-             title,
-             questions: [],
-         }
-     }))
- }
- export function addCard(title, card) {
-     return AsyncStorage.mergeItem(DATA_STORAGE_KEY, JSON.stringify({
-         [title] : {
+        [title]: {
             title,
-            questions: [title].questions.concat([card])
-         }
+            questions: []
+        }
+    })).then()
+ }
+ export function addCard({title, card}) {
+     return AsyncStorage.mergeItem(DATA_STORAGE_KEY, JSON.stringify({
+        [title] : {
+            questions : [card]
+        }
      }))
  }
 
