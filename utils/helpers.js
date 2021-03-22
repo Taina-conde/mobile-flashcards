@@ -6,9 +6,11 @@ const NOTIFICATION_KEY = 'MobileFlashcards : notifications'
 const DATA_STORAGE_KEY = 'MobileFlashcards : data'
 
  AsyncStorage.setItem(DATA_STORAGE_KEY, JSON.stringify({}))
+ 
 
  export function getDecks(){
-     return AsyncStorage.getItem(DATA_STORAGE_KEY)
+    AsyncStorage.getItem(DATA_STORAGE_KEY)
+        .then((results) => JSON.parse(results))
  }
  export function getDeck(deckId) {
      return AsyncStorage.getItem(DATA_STORAGE_KEY)

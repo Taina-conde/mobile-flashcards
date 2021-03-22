@@ -9,6 +9,7 @@ import {
 import { connect } from 'react-redux';
 import { receiveDecks } from '../actions';
 import {  white, lightGray } from '../utils/colors';
+import { getDecks } from '../utils/helpers'
 
 
 class DeckListView extends React.Component {
@@ -16,6 +17,9 @@ class DeckListView extends React.Component {
         const { dispatch, decks } = this.props;
 
         dispatch(receiveDecks(decks))
+        //
+       getDecks()
+
     }
     renderItem = ({ item }) => {
         const {navigation} = this.props
