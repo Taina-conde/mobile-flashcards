@@ -55,18 +55,19 @@ class QuizView extends React.Component {
         console.log('questionAnim', questionAnim)
         console.log('answerAnim', answerAnim)
         
-        Animated.timing(questionAnim, {toValue: 0, duration: 500, useNativeDriver: true})
+        Animated.timing(questionAnim, {toValue: 0, duration: 1000, useNativeDriver: true})
         .start(({finished}) => {
 
             console.log('finished question animation', finished)
-            Animated.timing(answerAnim, {toValue: 1, duration: 500, useNativeDriver: true})
+            Animated.timing(answerAnim, {toValue: 1, duration: 1000, useNativeDriver: true})
             .start(({finished}) => {
                 console.log('finished answer animation', finished)
                 console.log('flip to answer questionAnim', questionAnim)
                 console.log('flip to answer answerAnim', answerAnim)
                 this.setState(()=> ({
                     showQuestion: !showQuestion,
-                    
+                    questionAnim: new Animated.Value(0),
+                    answerAnim: new Animated.Value(1),   
                 }))
             })
         })
@@ -75,15 +76,17 @@ class QuizView extends React.Component {
         const { answerAnim, showQuestion, questionAnim } = this.state;
         console.log('showQuestion: ', showQuestion)
         console.log('answerAnim', answerAnim)
-        Animated.timing(answerAnim, {toValue: 0, duration: 500, useNativeDriver: true})
+        Animated.timing(answerAnim, {toValue: 0, duration: 1000, useNativeDriver: true})
         .start(({finished}) => {
 
             console.log('finished answer animation', finished)
-            Animated.timing(questionAnim, {toValue: 1, duration: 500, useNativeDriver: true})
+            Animated.timing(questionAnim, {toValue: 1, duration: 1000, useNativeDriver: true})
             .start(({finished}) => {
                 console.log('finished question animation', finished)
                 this.setState(()=> ({
                     showQuestion: !showQuestion,
+                    questionAnim: new Animated.Value(1),
+                    answerAnim: new Animated.Value(0)
                     
                 }))
             })
