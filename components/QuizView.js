@@ -15,6 +15,10 @@ import { lightBlue,
      gray,
      blue
 } from '../utils/colors'
+import { 
+    clearLocalNotification, 
+    setLocalNotification 
+} from '../utils/helpers'
 
 
 class QuizView extends React.Component {
@@ -44,10 +48,16 @@ class QuizView extends React.Component {
             countCorrect: 0,
             currentCardIndex : 0,
         })
+        //clear notifications
+        clearLocalNotification()
+            .then(setLocalNotification)
     }
     handleBackToDeck = () => {
         const { navigation } = this.props;
         navigation.goBack()
+        // clear notifications
+        clearLocalNotification()
+            .then(setLocalNotification)
     }
     flipToAnswer = ()=> {
         const { questionAnim, showQuestion, answerAnim } = this.state;
