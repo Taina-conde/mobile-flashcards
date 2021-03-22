@@ -9,18 +9,24 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import middleware from './middleware'
 import FlashcardsStatusBar from './components/FlashcardsStatusBar'
+import { setLocalNotification } from './utils/helpers'
 
 
 
-export default function App() {
-  return (
-    <Provider store = {createStore(reducer, middleware)}>
-      <NavigationContainer >
-        <FlashcardsStatusBar/>
-        <MainNavigator/>
-      </NavigationContainer>
-    </Provider>
-    
-  );
+export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
+  render(){
+    return (
+      <Provider store = {createStore(reducer, middleware)}>
+        <NavigationContainer >
+          <FlashcardsStatusBar/>
+          <MainNavigator/>
+        </NavigationContainer>
+      </Provider>
+      
+    );
+  }
 }
 
