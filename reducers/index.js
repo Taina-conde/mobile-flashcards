@@ -1,7 +1,8 @@
 import {
     RECEIVE_DECKS,
     ADD_DECK,
-    ADD_CARD_TO_DECK
+    ADD_CARD_TO_DECK,
+    SAVE_RESULTS
 } from '../actions'
 
 export default function decks(state = {}, action) {
@@ -26,6 +27,14 @@ export default function decks(state = {}, action) {
                        answer: action.answer
                    }])
                }
+            }
+        case SAVE_RESULTS: 
+            return {
+                ...state,
+                [action.deckId] : {
+                    ...state[action.deckId],
+                    results: state[action.deckId].results.concat([ results ])
+                }
             }
         default :
             return state
