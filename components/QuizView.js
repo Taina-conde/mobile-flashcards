@@ -53,7 +53,7 @@ class QuizView extends React.Component {
             currentCardIndex : 0,
         })
         //save results
-        const {currentCardIndex, countCorrect} = this.state
+        const { countCorrect} = this.state
         const {decks, route} = this.props
         const {deckId} = route.params
         const deck  = decks[deckId]
@@ -67,6 +67,15 @@ class QuizView extends React.Component {
         const { navigation } = this.props;
         navigation.goBack()
         // clear notifications
+        //save results
+        const { countCorrect} = this.state
+        const {decks, route} = this.props
+        const {deckId} = route.params
+        const deck  = decks[deckId]
+        const cardsTotal = deck.questions.length;
+        
+        const results = `${((countCorrect/cardsTotal)*100).toFixed(0)}%`
+        this.saveResults(results)
         
     }
     saveResults = (results) => {
