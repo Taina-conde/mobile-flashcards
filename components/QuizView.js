@@ -61,7 +61,8 @@ class QuizView extends React.Component {
     }
     saveResults = (results) => {
         const { dispatch } = this.props;
-        dispatch(handleSaveResults(results))
+        const { deckId } = route.params;
+        dispatch(handleSaveResults(deckId, results))
         //clear notifications
         clearLocalNotification()
             .then(setLocalNotification)
