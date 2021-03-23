@@ -3,7 +3,9 @@ const DATA_STORAGE_KEY = 'MobileFlashcards : data'
 
 export function getDecks(){
     return AsyncStorage.getItem(DATA_STORAGE_KEY )
-        .then((results) => JSON.parse(results))
+        .then((results) => {
+            console.log('results',JSON.parse(results))
+            return JSON.parse(results)})
  }
  export function getDeck(deckId) {
      return AsyncStorage.getItem(DATA_STORAGE_KEY)
@@ -18,7 +20,7 @@ export function getDecks(){
             title,
             questions: []
         }
-    })).then()
+    }))
  }
  export function addCard({title, card}) {
      return AsyncStorage.mergeItem(DATA_STORAGE_KEY, JSON.stringify({
