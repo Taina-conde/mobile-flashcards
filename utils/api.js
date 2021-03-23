@@ -18,7 +18,8 @@ export function getDecks(){
      return AsyncStorage.mergeItem(DATA_STORAGE_KEY, JSON.stringify({
         [title]: {
             title,
-            questions: []
+            questions: [],
+            results: []
         }
     }))
  }
@@ -33,9 +34,20 @@ export function getDecks(){
                 }
              }))
             
-        })
-     
+        })   
     
+ }
+ export function saveResultsToDeck(title, results) {
+     return getDeck(title)
+        .then((deck)=> {
+            const existingResultsArr = deck.results
+            const addedResultsArr = existingResultsArr.concat([results])
+            return AsyncStorage.mergeItem(DATA_STORAGE_KEY, JSON.stringify({
+                [title] : {
+                    results : addedResultsArr
+                }
+            }))
+        })
  }
 
 
