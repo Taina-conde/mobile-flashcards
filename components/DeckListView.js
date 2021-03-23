@@ -7,20 +7,14 @@ import {
     FlatList,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { receiveDecks } from '../actions';
+import { handleInitialData } from '../actions';
 import {  white, lightGray } from '../utils/colors';
-import { getDecks } from '../utils/api'
-
-
-
-
-
 
 class DeckListView extends React.Component {
     componentDidMount() {
-        const { dispatch, decks} = this.props;
+        const { dispatch } = this.props;
         
-        dispatch(receiveDecks(decks))
+        dispatch(handleInitialData())
 
     }
     renderItem = ({ item }) => {
