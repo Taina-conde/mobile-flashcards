@@ -16,7 +16,7 @@ import {
     white, 
     fadedWhite 
 } from '../utils/colors'
-import { saveDeckTitle } from '../utils/api'
+import { handleSaveDeckTitle } from '../utils/api'
 
 class NewDeckView extends React.Component {
     state = {
@@ -38,7 +38,7 @@ class NewDeckView extends React.Component {
             }
         }))
         //update AsyncStorage
-        saveDeckTitle(this.state.input)
+        handleSaveDeckTitle(this.state.input)
         //clear input
         this.setState(()=> ({
             input: ""

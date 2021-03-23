@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
     KeyboardAvoidingView
  } from 'react-native'
-import { addCardToDeck } from '../actions'
+import { addCardToDeck, handleAddCardToDeck } from '../actions'
 import { connect } from 'react-redux'
 import { green, 
     lightGray, 
@@ -35,9 +35,9 @@ class NewQuestionView extends React.Component {
         const { deckId } = route.params;
         console.log('deckId : ', deckId)
         const { question, answer } = this.state;
-        dispatch(addCardToDeck(question, answer, deckId))
+        //dispatch(addCardToDeck(question, answer, deckId))
         //add question in AsyncStorage
-        addCard(deckId, {
+        handleAddCardToDeck(deckId, {
             question,
             answer
         })
