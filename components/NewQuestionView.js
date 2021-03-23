@@ -15,7 +15,7 @@ import { green,
     fadedWhite, 
     white
 } from '../utils/colors';
-import { addCard } from '../utils/helpers'
+import { addCard } from '../utils/api'
 
 class NewQuestionView extends React.Component {
     state = {
