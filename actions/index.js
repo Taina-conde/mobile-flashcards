@@ -18,7 +18,12 @@ export function handleInitialData() {
 }
 export function handleSaveDeckTitle(title) {
     return (dispatch) => {
-        dispatch(addDeck(title))
+        dispatch(addDeck({
+            [title]:{
+                title,
+                questions: []
+            } 
+        }))
         return saveDeckTitle(title)
     }
 }
@@ -43,7 +48,7 @@ function addDeck(deck) {
     }
 }
 
-function addCardToDeck(question, answer, deckId) {
+function addCardToDeck({question, answer}, deckId) {
     return {
         type: ADD_CARD_TO_DECK,
         question, 

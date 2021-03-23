@@ -7,7 +7,7 @@ import {
     TouchableOpacity,
     KeyboardAvoidingView
 } from 'react-native';
-import { addDeck } from '../actions'
+import { handleSaveDeckTitle } from '../actions'
 import { connect } from 'react-redux'
 import { 
     lightGray, 
@@ -16,7 +16,7 @@ import {
     white, 
     fadedWhite 
 } from '../utils/colors'
-import { handleSaveDeckTitle } from '../utils/api'
+
 
 class NewDeckView extends React.Component {
     state = {
@@ -31,14 +31,14 @@ class NewDeckView extends React.Component {
         const { dispatch, navigation } = this.props;
         
         //update store
-        dispatch(addDeck({
-            [this.state.input] : {
-                title: this.state.input,
-                questions: []
-            }
-        }))
+        //dispatch(addDeck({
+        //    [this.state.input] : {
+        //        title: this.state.input,
+        //        questions: []
+        //    }
+        //}))
         //update AsyncStorage
-        handleSaveDeckTitle(this.state.input)
+        dispatch(handleSaveDeckTitle(this.state.input))
         //clear input
         this.setState(()=> ({
             input: ""
