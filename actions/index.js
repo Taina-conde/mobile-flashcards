@@ -36,6 +36,8 @@ export function handleAddCardToDeck(title, card) {
                 console.log('title', title)
                 console.log('card', card)
                 dispatch(addCardToDeck(card, title))
+            }).then(()=> getDecks()).then((res)=> {
+                console.log('Add card to deck: ', res)
             })
     
     }

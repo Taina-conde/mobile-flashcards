@@ -25,11 +25,19 @@ export function getDecks(){
     })
  }
  export function addCard(title, card) {
-     return AsyncStorage.mergeItem(DATA_STORAGE_KEY, JSON.stringify({
-        [title] : {
-            questions : [card]
-        }
-     }))
+     return getDeck(title)
+        .then((deck) => {
+            const existingCardsArr = deck.questions 
+            const addedCardArr = existingCardsArr.concat([card])
+            return AsyncStorage.mergeItem(DATA_STORAGE_KEY, JSON.stringify({
+                [title] : {
+                    questions : addedCardArr
+                }
+             }))
+            
+        })
+     
+    
  }
 
 
