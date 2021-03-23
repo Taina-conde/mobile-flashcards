@@ -35,11 +35,13 @@ class QuizView extends React.Component {
             this.setState({
                 countCorrect: this.state.countCorrect + 1,
                 currentCardIndex : this.state.currentCardIndex + 1,
+                showQuestion: true
             })
             
         }
         this.setState(()=> ({
             currentCardIndex: this.state.currentCardIndex + 1,
+            showQuestion: true
         }))
         
     }
