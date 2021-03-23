@@ -51,15 +51,21 @@ class QuizView extends React.Component {
             currentCardIndex : 0,
         })
         //clear notifications
-        clearLocalNotification()
-            .then(setLocalNotification)
+        
     }
     handleBackToDeck = () => {
         const { navigation } = this.props;
         navigation.goBack()
         // clear notifications
+        
+    }
+    saveResults = (results) => {
+        const { dispatch } = this.props;
+        dispatch(handleSaveResults(results))
+        //clear notifications
         clearLocalNotification()
             .then(setLocalNotification)
+
     }
     flipToAnswer = ()=> {
         const { questionAnim, showQuestion, answerAnim } = this.state;
@@ -121,12 +127,14 @@ class QuizView extends React.Component {
         const cardsTotal = deck.questions.length;
         let currentCard = deck.questions[currentCardIndex];
         if (currentCardIndex >= deck.questions.length ) {
+            const results = `${((countCorrect/cardsTotal)*100).toFixed(0)}%`
+            this.saveResults(results)
             return (
                 <View style = {styles.container}>
                     <Text style = {styles.scoreText}>Score</Text>
                     <View style = {styles.resultsBox}>
                         <Text style = {styles.scoreResult}>
-                            {`${((countCorrect/cardsTotal)*100).toFixed(0)}%`}
+                            {results}
                         </Text>
                     </View>
                     <View style = {styles.btnGroup}>
