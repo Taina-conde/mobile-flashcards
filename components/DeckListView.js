@@ -9,8 +9,7 @@ import {
 import { connect } from 'react-redux';
 import { receiveDecks } from '../actions';
 import {  white, lightGray } from '../utils/colors';
-import { getDecks, DATA_STORAGE_KEY } from '../utils/helpers'
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getDecks } from '../utils/api'
 
 
 
@@ -20,10 +19,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 class DeckListView extends React.Component {
     componentDidMount() {
         const { dispatch, decks} = this.props;
-        console.log(DATA_STORAGE_KEY)
-        AsyncStorage.setItem(
-            DATA_STORAGE_KEY, JSON.stringify(decks)
-        )
+        
         dispatch(receiveDecks(decks))
 
     }
