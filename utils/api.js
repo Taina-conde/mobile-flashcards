@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const DATA_STORAGE_KEY = 'MobileFlashcards : data'
+export const DATA_STORAGE_KEY = 'MobileFlashcards : data'
 
 export function getDecks(){
     return AsyncStorage.getItem(DATA_STORAGE_KEY )
@@ -19,9 +19,9 @@ export function getDecks(){
         [title]: {
             title,
             questions: [],
-            results: []
+            results: [],
         }
-    }))
+    })).then(() => getDecks()).then((decks) => {console.log('save deck title: ', decks)})
  }
  export function addCard(title, card) {
      return getDeck(title)

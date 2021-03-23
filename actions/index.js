@@ -49,6 +49,8 @@ export function handleSaveResults(deckId, results) {
         return saveResultsToDeck(deckId, results)
             .then(() => {
                 dispatch(saveResults(deckId, results))
+            }).then(()=> getDecks()).then((res)=> {
+                console.log('save results to deck: ', res)
             })
     }
 }

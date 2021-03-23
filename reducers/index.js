@@ -33,7 +33,7 @@ export default function decks(state = {}, action) {
                 ...state,
                 [action.deckId] : {
                     ...state[action.deckId],
-                    results: state[action.deckId].results.concat([ results ])
+                    results: state[action.deckId].results.concat([ action.results ])
                 }
             }
         default :

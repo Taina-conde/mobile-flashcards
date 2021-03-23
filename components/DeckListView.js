@@ -9,7 +9,8 @@ import {
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions';
 import {  white, lightGray } from '../utils/colors';
-
+import { DATA_STORAGE_KEY } from '../utils/api'
+import AsyncStorage from '@react-native-async-storage/async-storage';
 class DeckListView extends React.Component {
     componentDidMount() {
         const { dispatch } = this.props;
@@ -30,13 +31,24 @@ class DeckListView extends React.Component {
             </TouchableOpacity>
         )
     }
+    removeAll= async () => {
+        try {
+          await AsyncStorage.removeItem(DATA_STORAGE_KEY)
+        } catch(e) {
+          // remove error
+        }
+      
+        console.log('Done.')
+      }
     render (){
         const { navigation, decks } = this.props;
         const decksKeys = Object.keys(decks);
         const data = Object.values(decks)
         return(
             <View style = {styles.container}>
-                
+                <TouchableOpacity onPress = {this.removeAll}>
+                    <Text>Clear</Text>
+                </TouchableOpacity>
                 { (decksKeys.length === 0)
                   ? <Text style = {styles.noDecks}> 0 decks</Text>
                   : <FlatList 

@@ -3,7 +3,7 @@ import { View,
     Text, 
     StyleSheet, 
     TouchableOpacity,
-    Animated
+    Animated,
 } from 'react-native'
 import { connect } from 'react-redux'
 import NoCards from './NoCards'
@@ -19,6 +19,7 @@ import {
     clearLocalNotification, 
     setLocalNotification 
 } from '../utils/helpers'
+import {handleSaveResults} from '../actions'
 
 
 class QuizView extends React.Component {
@@ -29,6 +30,7 @@ class QuizView extends React.Component {
         answerAnim : new Animated.Value(0),
         showQuestion: true,
     }
+    
     handleOnPress(userAnswer) {
         console.log('userAnswer', userAnswer)
         if (userAnswer === 'correct') {
@@ -50,7 +52,15 @@ class QuizView extends React.Component {
             countCorrect: 0,
             currentCardIndex : 0,
         })
-        //clear notifications
+        //save results
+        const {currentCardIndex, countCorrect} = this.state
+        const {decks, route} = this.props
+        const {deckId} = route.params
+        const deck  = decks[deckId]
+        const cardsTotal = deck.questions.length;
+        
+        const results = `${((countCorrect/cardsTotal)*100).toFixed(0)}%`
+        this.saveResults(results)
         
     }
     handleBackToDeck = () => {
@@ -60,7 +70,7 @@ class QuizView extends React.Component {
         
     }
     saveResults = (results) => {
-        const { dispatch } = this.props;
+        const { dispatch, route } = this.props;
         const { deckId } = route.params;
         dispatch(handleSaveResults(deckId, results))
         //clear notifications
@@ -129,7 +139,7 @@ class QuizView extends React.Component {
         let currentCard = deck.questions[currentCardIndex];
         if (currentCardIndex >= deck.questions.length ) {
             const results = `${((countCorrect/cardsTotal)*100).toFixed(0)}%`
-            this.saveResults(results)
+            
             return (
                 <View style = {styles.container}>
                     <Text style = {styles.scoreText}>Score</Text>
