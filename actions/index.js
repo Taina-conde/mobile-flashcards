@@ -43,7 +43,7 @@ export function handleAddCardToDeck(title, card) {
     
     }
 }
-export function handleSaveResults(results) {
+export function handleSaveResults(deckId, results) {
     
 }
 
@@ -70,7 +70,7 @@ function addCardToDeck({question, answer}, deckId) {
     }
 }
 
-function saveResults(results) {
+function saveResults(deckId, results) {
     return {
         type: SAVE_RESULTS,
         results
