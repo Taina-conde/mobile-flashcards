@@ -1,13 +1,36 @@
-import { AsyncStorage } from 'react-native' 
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const DECKS_STORAGE_KEY = '@Decks'
+export const DATA_STORAGE_KEY = 'MobileFlashcards : data'
 
-AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify({}))
+export function getDecks(){
+    return AsyncStorage.setItem(DATA_STORAGE_KEY )
+        .then((results) => JSON.parse(results))
+ }
+ export function getDeck(deckId) {
+     return AsyncStorage.getItem(DATA_STORAGE_KEY)
+        .then((results) => {
+            const data = JSON.parse(results)
+            return data[deckId]
+        })
+ }
+ export function saveDeckTitle(title) {    
+     return AsyncStorage.mergeItem(DATA_STORAGE_KEY, JSON.stringify({
+        [title]: {
+            title,
+            questions: []
+        }
+    })).then()
+ }
+ export function addCard({title, card}) {
+     return AsyncStorage.mergeItem(DATA_STORAGE_KEY, JSON.stringify({
+        [title] : {
+            questions : [card]
+        }
+     }))
+ }
 
-export function getDecks() {
-    return AsyncStorage.getItem(DECKS_STORAGE_KEY)
-        .then(JSON.parse(results))
-}
+
+
 
 
 
