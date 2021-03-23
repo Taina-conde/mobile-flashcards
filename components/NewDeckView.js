@@ -16,7 +16,7 @@ import {
     white, 
     fadedWhite 
 } from '../utils/colors'
-import { saveDeckTitle } from '../utils/helpers'
+import { saveDeckTitle } from '../utils/api'
 
 class NewDeckView extends React.Component {
     state = {
