@@ -19,18 +19,25 @@ export function handleInitialData() {
 export function handleSaveDeckTitle(title) {
     return (dispatch) => {
         return saveDeckTitle(title)
-            .then( decks => getDeck(title))
-            .then(deck => {
-                dispatch(addDeck(deck))
+            .then(() => {
+                dispatch(addDeck({
+                    [title]: {
+                        title,
+                        questions: []
+                    }
+                }))
             })
     }
 }
 export function handleAddCardToDeck(title, card) {
     return (dispatch) => {
         return addCard(title, card)
-            .then(decks => {
+            .then(() => {
+                console.log('title', title)
+                console.log('card', card)
                 dispatch(addCardToDeck(card, title))
             })
+    
     }
 }
 
@@ -57,3 +64,4 @@ function addCardToDeck({question, answer}, deckId) {
     }
 }
 
+  

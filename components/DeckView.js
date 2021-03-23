@@ -7,6 +7,7 @@ class DeckView extends React.Component {
     render(){
         const { navigation, route, decks } = this.props;
         const { deckId } = route.params
+        console.log('deckView: ', decks[deckId])
         
         return (
             <View style = {styles.container}>

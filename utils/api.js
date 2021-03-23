@@ -20,7 +20,9 @@ export function getDecks(){
             title,
             questions: []
         }
-    }))
+    })).then(() => getDecks()).then((res)=> {
+        console.log('save deck title: ', res)
+    })
  }
  export function addCard(title, card) {
      return AsyncStorage.mergeItem(DATA_STORAGE_KEY, JSON.stringify({
