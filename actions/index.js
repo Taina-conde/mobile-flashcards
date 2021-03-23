@@ -1,7 +1,7 @@
 import { 
     getDecks,
     saveDeckTitle,
-    getDeck,
+    saveResultsToDeck,
     addCard
  } from '../utils/api'
 export const RECEIVE_DECKS = 'RECEIVE_DECKS'
@@ -24,7 +24,8 @@ export function handleSaveDeckTitle(title) {
                 dispatch(addDeck({
                     [title]: {
                         title,
-                        questions: []
+                        questions: [],
+                        results: []
                     }
                 }))
             })
@@ -44,7 +45,12 @@ export function handleAddCardToDeck(title, card) {
     }
 }
 export function handleSaveResults(deckId, results) {
-    
+    return (dispatch) => {
+        return saveResultsToDeck(deckId, results)
+            .then(() => {
+                dispatch(saveResults(deckId, results))
+            })
+    }
 }
 
 function receiveDecks(decks) {
@@ -73,6 +79,7 @@ function addCardToDeck({question, answer}, deckId) {
 function saveResults(deckId, results) {
     return {
         type: SAVE_RESULTS,
+        deckId,
         results
     }
 }
