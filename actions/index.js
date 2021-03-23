@@ -7,6 +7,7 @@ import {
 export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 export const ADD_DECK = 'ADD_DECK'
 export const ADD_CARD_TO_DECK = 'ADD_CARD_TO_DECK'
+export const SAVE_RESULTS = 'SAVE_RESULTS'
 
 export function handleInitialData() {
     return (dispatch) => {
@@ -42,6 +43,9 @@ export function handleAddCardToDeck(title, card) {
     
     }
 }
+export function handleSaveResults(results) {
+    
+}
 
 function receiveDecks(decks) {
     return {
@@ -63,6 +67,13 @@ function addCardToDeck({question, answer}, deckId) {
         question, 
         answer,
         deckId
+    }
+}
+
+function saveResults(results) {
+    return {
+        type: SAVE_RESULTS,
+        results
     }
 }
 
