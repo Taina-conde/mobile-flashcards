@@ -37,10 +37,10 @@ class NewQuestionView extends React.Component {
         const { question, answer } = this.state;
         //dispatch(addCardToDeck(question, answer, deckId))
         //add question in AsyncStorage
-        handleAddCardToDeck(deckId, {
+        dispatch(handleAddCardToDeck(deckId, {
             question,
             answer
-        })
+        }))
         //route back to deck view
         navigation.goBack()
     }

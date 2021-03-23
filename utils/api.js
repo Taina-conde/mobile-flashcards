@@ -22,7 +22,7 @@ export function getDecks(){
         }
     }))
  }
- export function addCard({title, card}) {
+ export function addCard(title, card) {
      return AsyncStorage.mergeItem(DATA_STORAGE_KEY, JSON.stringify({
         [title] : {
             questions : [card]

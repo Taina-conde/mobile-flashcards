@@ -18,19 +18,19 @@ export function handleInitialData() {
 }
 export function handleSaveDeckTitle(title) {
     return (dispatch) => {
-        dispatch(addDeck({
-            [title]:{
-                title,
-                questions: []
-            } 
-        }))
         return saveDeckTitle(title)
+            .then( decks => getDeck(title))
+            .then(deck => {
+                dispatch(addDeck(deck))
+            })
     }
 }
-export function handleAddCardToDeck(info) {
+export function handleAddCardToDeck(title, card) {
     return (dispatch) => {
-        dispatch(addCardToDeck(info))
-        return addCard(info)
+        return addCard(title, card)
+            .then(decks => {
+                dispatch(addCardToDeck(card, title))
+            })
     }
 }
 
