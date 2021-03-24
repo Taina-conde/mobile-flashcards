@@ -7,6 +7,7 @@ import { View,
 } from 'react-native'
 import { connect } from 'react-redux'
 import NoCards from './NoCards'
+import QuizScore from './QuizScore'
 import { lightBlue,
      green, 
      white,
@@ -15,11 +16,8 @@ import { lightBlue,
      gray,
      blue
 } from '../utils/colors'
-import { 
-    clearLocalNotification, 
-    setLocalNotification 
-} from '../utils/helpers'
-import {handleSaveResults} from '../actions'
+
+
 
 
 class QuizView extends React.Component {
@@ -52,41 +50,12 @@ class QuizView extends React.Component {
             countCorrect: 0,
             currentCardIndex : 0,
         })
-        //save results
-        const { countCorrect} = this.state
-        const {decks, route} = this.props
-        const {deckId} = route.params
-        const deck  = decks[deckId]
-        const cardsTotal = deck.questions.length;
-        
-        const results = `${((countCorrect/cardsTotal)*100).toFixed(0)}%`
-        this.saveResults(results)
-        
     }
     handleBackToDeck = () => {
         const { navigation } = this.props;
-        navigation.goBack()
-        // clear notifications
-        //save results
-        const { countCorrect} = this.state
-        const {decks, route} = this.props
-        const {deckId} = route.params
-        const deck  = decks[deckId]
-        const cardsTotal = deck.questions.length;
-        
-        const results = `${((countCorrect/cardsTotal)*100).toFixed(0)}%`
-        this.saveResults(results)
-        
+        navigation.goBack()  
     }
-    saveResults = (results) => {
-        const { dispatch, route } = this.props;
-        const { deckId } = route.params;
-        dispatch(handleSaveResults(deckId, results))
-        //clear notifications
-        clearLocalNotification()
-            .then(setLocalNotification)
-
-    }
+   
     flipToAnswer = ()=> {
         const { questionAnim, showQuestion, answerAnim } = this.state;
         console.log('showQuestion: ', showQuestion)
@@ -150,40 +119,12 @@ class QuizView extends React.Component {
             const results = `${((countCorrect/cardsTotal)*100).toFixed(0)}%`
             
             return (
-                <View style = {styles.container}>
-                    <Text style = {styles.scoreText}>Score</Text>
-                    <View style = {styles.resultsBox}>
-                        <Text style = {styles.scoreResult}>
-                            {results}
-                        </Text>
-                    </View>
-                    <View style = {styles.btnGroup}>
-                        <TouchableOpacity 
-                            style = {[styles.btn, {
-                                backgroundColor: lightBlue,
-                            }]}
-                            onPress = {this.handleRestart}
-                        >
-                            <Text 
-                                style = {styles.btnText}
-                            >
-                                Restart Quiz
-                            </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity 
-                            style = {[styles.btn, {
-                                backgroundColor: gray
-                            }]}
-                            onPress = {this.handleBackToDeck}
-                        >
-                            <Text 
-                                style = {styles.btnText}
-                            >
-                                Back to Deck
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
+                <QuizScore
+                    results = {results}
+                    onRestart = {this.handleRestart}
+                    onBackToDeck = {this.handleBackToDeck}
+                    deckId = {deckId}
+                />
             )
         }
         

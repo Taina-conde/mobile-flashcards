@@ -1,51 +1,41 @@
 import React from 'react' 
 import { View, Text, StyleSheet } from 'react-native'
 import { connect } from 'react-redux'
+import {handleSaveDeckTitle, handleSaveResults} from '../actions'
+import { 
+    clearLocalNotification, 
+    setLocalNotification 
+} from '../utils/helpers'
+import { lightBlue,
+    green, 
+    white,
+    red,
+    lightGray,
+    gray,
+    blue
+} from '../utils/colors'
 
 class QuizScore extends React.Component {
     componentDidMount() {
+        //save results
+        const {results, dispatch, deckId } = this.props
+        dispatch(handleSaveResults(deckId, results))
         //clear notifications
         clearLocalNotification()
             .then(setLocalNotification)
     }
-    handleRestart = () => {
-        this.setState({
-            countCorrect: 0,
-            currentCardIndex : 0,
-        })
-        //save results
-        const { countCorrect} = this.state
-        const {decks, route} = this.props
-        const {deckId} = route.params
-        const deck  = decks[deckId]
-        const cardsTotal = deck.questions.length;
+    onRestart = () => {
+        const { onRestart } = this.props
+        onRestart()
         
-        const results = `${((countCorrect/cardsTotal)*100).toFixed(0)}%`
-        this.saveResults(results)
         
     }
-    handleBackToDeck = () => {
-        const { navigation } = this.props;
-        navigation.goBack()
-        // clear notifications
-        //save results
-        const { countCorrect} = this.state
-        const {decks, route} = this.props
-        const {deckId} = route.params
-        const deck  = decks[deckId]
-        const cardsTotal = deck.questions.length;
-        
-        const results = `${((countCorrect/cardsTotal)*100).toFixed(0)}%`
-        this.saveResults(results)
-        
+    onBackToDeck = () => {
+        const { onBackToDeck } = this.props;
+        onBackToDeck()
+       
     }
-    saveResults = (results) => {
-        const { dispatch, route } = this.props;
-        const { deckId } = route.params;
-        dispatch(handleSaveResults(deckId, results))
-        
-
-    }
+   
     render(){
         return(
             <View>
