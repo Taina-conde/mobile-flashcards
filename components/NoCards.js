@@ -1,11 +1,11 @@
 import React from 'react';
 import { Text, StyleSheet, View} from 'react-native';
-import { lightGray } from '../utils/colors'
+import { lightGray, yellow } from '../utils/colors'
 import { FontAwesome } from '@expo/vector-icons';
 
 const NoCards = () => (
     <View style = {styles.container}>
-        <FontAwesome name="warning" size={70} color="black" />
+        <FontAwesome name="warning" size={70} color={yellow} />
         <Text style = {styles.noCardsText}>
             Sorry, there are no cards in this deck. 
             Please, select another deck to start 
