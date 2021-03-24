@@ -1,7 +1,12 @@
 import React from 'react' 
-import { View, Text, StyleSheet } from 'react-native'
+import { 
+    View,
+    Text, 
+    StyleSheet, 
+    TouchableOpacity
+ } from 'react-native'
 import { connect } from 'react-redux'
-import {handleSaveDeckTitle, handleSaveResults} from '../actions'
+import { handleSaveResults} from '../actions'
 import { 
     clearLocalNotification, 
     setLocalNotification 
@@ -38,42 +43,42 @@ class QuizScore extends React.Component {
    
     render(){
         return(
-            <View>
-                <View style = {styles.container}>
-                    <Text style = {styles.scoreText}>Score</Text>
-                    <View style = {styles.resultsBox}>
-                        <Text style = {styles.scoreResult}>
-                            {this.props.results}
+            
+            <View style = {styles.container}>
+                <Text style = {styles.scoreText}>Score</Text>
+                <View style = {styles.resultsBox}>
+                    <Text style = {styles.scoreResult}>
+                        {this.props.results}
+                    </Text>
+                </View>
+                <View style = {styles.btnGroup}>
+                    <TouchableOpacity 
+                        style = {[styles.btn, {
+                            backgroundColor: lightBlue,
+                        }]}
+                        onPress = {this.onRestart}
+                    >
+                        <Text 
+                            style = {styles.btnText}
+                        >
+                            Restart Quiz
                         </Text>
-                    </View>
-                    <View style = {styles.btnGroup}>
-                        <TouchableOpacity 
-                            style = {[styles.btn, {
-                                backgroundColor: lightBlue,
-                            }]}
-                            onPress = {this.onRestart}
+                    </TouchableOpacity>
+                    <TouchableOpacity 
+                        style = {[styles.btn, {
+                            backgroundColor: gray
+                        }]}
+                        onPress = {this.onBackToDeck}
+                    >
+                        <Text 
+                            style = {styles.btnText}
                         >
-                            <Text 
-                                style = {styles.btnText}
-                            >
-                                Restart Quiz
-                            </Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity 
-                            style = {[styles.btn, {
-                                backgroundColor: gray
-                            }]}
-                            onPress = {this.onBackToDeck}
-                        >
-                            <Text 
-                                style = {styles.btnText}
-                            >
-                                Back to Deck
-                            </Text>
-                        </TouchableOpacity>
-                    </View>
+                            Back to Deck
+                        </Text>
+                    </TouchableOpacity>
                 </View>
             </View>
+            
         )
     }
 }
