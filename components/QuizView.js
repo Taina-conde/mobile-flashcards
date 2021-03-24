@@ -25,6 +25,9 @@ class QuizView extends React.Component {
         animatedValue: new Animated.Value(0),
         showQuestion: true,
     }
+    componentDidMount() {
+        this.animate()
+    }
     
     handleOnPress(userAnswer) {
         console.log('userAnswer', userAnswer)
@@ -53,14 +56,23 @@ class QuizView extends React.Component {
         navigation.goBack()  
     }
     animate = () => {
-        this.setState({
-            animatedValue: 0
-        })
+        const {animatedValue} = this.state;
         Animated.timing(animatedValue, {
             toValue: 1,
             duration: 1200,
             easing: Easing.bounce,
-          }).start();
+            useNativeDriver: false,
+          }).start(() => this.setState({
+            animatedValue: new Animated.Value(0),
+            
+          }));
+    }
+    toggleShowQuestion =() => {
+        const {showQuestion} = this.state;
+        this.setState({
+            showQuestion: !showQuestion
+        })
+        this.animate()
     }
     
     render() {
@@ -77,10 +89,7 @@ class QuizView extends React.Component {
             inputRange: [0, 1],
             outputRange: [0, 36]
         })
-        const animatedBoxSize = animatedValue.interpolate({
-            inputRange: [0, 1],
-            outputRange: [0, 200]
-        })
+        
 
         if (deck.questions.length === 0) {
             return <NoCards style = {styles.container}/>
@@ -106,28 +115,35 @@ class QuizView extends React.Component {
                 <Text style = {styles.cardsLeft}>
                     {`${currentCardIndex + 1}/${cardsTotal}`}
                 </Text>
-                <Animated.View style = {[styles.animatedContainer, {
+                <View style = {styles.animatedContainer}>
+                    
+                        {showQuestion 
+                            ? 
+                            <Animated.Text style = {[styles.mainText, {
+                                    opacity: animatedValue,
+                                    fontSize: textSize
 
-                }]}>
-                    {showQuestion 
-                        ? 
-                        <Animated.Text style = {[styles.mainText, {opacity: animatedValue}]}>
-                            {currentCard.question}
-                        </Animated.Text>
-                        : 
-                        <Animated.Text style = {[styles.mainText, {opacity: animatedValue}]}>
-                            {currentCard.answer}
-                        </Animated.Text>   
-                    }
-                </Animated.View>
+                                }]}>
+                                {currentCard.question}
+                            </Animated.Text>
+                            : 
+                            <Animated.Text style = {[styles.mainText, {
+                                    opacity: animatedValue,
+                                    fontSize: textSize,
+                                }]}>
+                                {currentCard.answer}
+                            </Animated.Text>   
+                        }
+                    
+                </View>
                 { showQuestion 
-                    ? (<TouchableOpacity onPress = {this.animate}>
+                    ? (<TouchableOpacity onPress = {this.toggleShowQuestion}>
                         <Text style = {styles.flipText}>
                             Show answer
                         </Text>
                     </TouchableOpacity>)
                     : (
-                        <TouchableOpacity onPress = {this.animate}>
+                        <TouchableOpacity onPress = {this.toggleShowQuestion}>
                             <Text style = {styles.flipText}>
                                 Show question
                             </Text>
@@ -171,11 +187,9 @@ const styles = StyleSheet.create({
         
     },
     mainText: {
-        fontSize: 38,
         fontWeight: 'bold',
-        marginTop: 200,
-        marginBottom: 30,
         textAlign: 'center',
+
     },
     flipText: {
         color: lightBlue,
@@ -210,6 +224,9 @@ const styles = StyleSheet.create({
         color: white,
     },
     animatedContainer : {
+        flex: 0.7,
+        justifyContent: 'center',
+        alignItems: 'center',
         borderWidth: 1,
         borderColor: 'black',
         alignSelf: 'stretch',
