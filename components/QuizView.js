@@ -37,12 +37,13 @@ class QuizView extends React.Component {
                 currentCardIndex : this.state.currentCardIndex + 1,
                 showQuestion: true
             })
-            
+            this.animate()
         }
         this.setState(()=> ({
             currentCardIndex: this.state.currentCardIndex + 1,
             showQuestion: true
         }))
+        this.animate()
         
     }
     handleRestart = () => {
@@ -227,8 +228,6 @@ const styles = StyleSheet.create({
         flex: 0.7,
         justifyContent: 'center',
         alignItems: 'center',
-        borderWidth: 1,
-        borderColor: 'black',
         alignSelf: 'stretch',
     },
 
