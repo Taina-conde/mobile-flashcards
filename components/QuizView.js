@@ -62,58 +62,13 @@ class QuizView extends React.Component {
             easing: Easing.bounce,
           }).start();
     }
-   
-    flipToAnswer = ()=> {
-        const { questionAnim, showQuestion, answerAnim } = this.state;
-        console.log('showQuestion: ', showQuestion)
-        console.log('questionAnim', questionAnim)
-        console.log('answerAnim', answerAnim)
-        
-        Animated.timing(questionAnim, {toValue: 0, duration: 1000, useNativeDriver: true})
-        .start(({finished}) => {
-
-            console.log('finished question animation', finished)
-            Animated.timing(answerAnim, {toValue: 1, duration: 1000, useNativeDriver: true})
-            .start(({finished}) => {
-                console.log('finished answer animation', finished)
-                console.log('flip to answer questionAnim', questionAnim)
-                console.log('flip to answer answerAnim', answerAnim)
-                this.setState(()=> ({
-                    showQuestion: !showQuestion,
-                    questionAnim: new Animated.Value(0),
-                    answerAnim: new Animated.Value(1),   
-                }))
-            })
-        })
-    }
-    flipToQuestion = () => {
-        const { answerAnim, showQuestion, questionAnim } = this.state;
-        console.log('showQuestion: ', showQuestion)
-        console.log('answerAnim', answerAnim)
-        Animated.timing(answerAnim, {toValue: 0, duration: 1000, useNativeDriver: true})
-        .start(({finished}) => {
-
-            console.log('finished answer animation', finished)
-            Animated.timing(questionAnim, {toValue: 1, duration: 1000, useNativeDriver: true})
-            .start(({finished}) => {
-                console.log('finished question animation', finished)
-                this.setState(()=> ({
-                    showQuestion: !showQuestion,
-                    questionAnim: new Animated.Value(1),
-                    answerAnim: new Animated.Value(0)
-                    
-                }))
-            })
-        })
-    }
+    
     render() {
         const { route, decks } = this.props;
         const { deckId } = route.params;
         const { 
             countCorrect, 
             currentCardIndex, 
-            questionAnim, 
-            answerAnim,
             showQuestion 
         } = this.state;
         const deck = decks[deckId];
@@ -160,13 +115,13 @@ class QuizView extends React.Component {
                     </Animated.View>)
                 }
                 { showQuestion 
-                    ? (<TouchableOpacity onPress = {this.flipToAnswer}>
+                    ? (<TouchableOpacity onPress = {this.animate}>
                         <Text style = {styles.flipText}>
                             Show answer
                         </Text>
                     </TouchableOpacity>)
                     : (
-                        <TouchableOpacity onPress = {this.flipToQuestion}>
+                        <TouchableOpacity onPress = {this.animate}>
                             <Text style = {styles.flipText}>
                                 Show question
                             </Text>
