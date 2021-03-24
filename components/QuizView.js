@@ -51,6 +51,7 @@ class QuizView extends React.Component {
             countCorrect: 0,
             currentCardIndex : 0,
         })
+        this.animate()
     }
     handleBackToDeck = () => {
         const { navigation } = this.props;
