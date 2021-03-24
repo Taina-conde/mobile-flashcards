@@ -158,7 +158,10 @@ class QuizView extends React.Component {
                         }]}
                         onPress = {() => this.handleOnPress('correct')}
                     >
-                        <Text style = {styles.btnText}>Correct</Text>
+                        <Text style = {styles.btnText}>
+                            Correct
+                        </Text>
+
                     </TouchableOpacity>
                     <TouchableOpacity 
                         style = {[styles.btn, {
@@ -166,7 +169,9 @@ class QuizView extends React.Component {
                         }]}
                         onPress = {() => this.handleOnPress('incorrect')}
                     >
-                        <Text style = {styles.btnText}>Incorrect</Text>
+                        <Text style = {styles.btnText}>
+                            Incorrect
+                        </Text>
                     </TouchableOpacity>
                 </View>
             </View>

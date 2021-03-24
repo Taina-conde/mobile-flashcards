@@ -16,6 +16,7 @@ import { lightBlue,
     gray,
     blue
 } from '../utils/colors'
+import { MaterialCommunityIcons, Ionicons } from '@expo/vector-icons';
 
 class QuizScore extends React.Component {
     componentDidMount() {
@@ -60,6 +61,7 @@ class QuizScore extends React.Component {
                         >
                             Restart Quiz
                         </Text>
+                        <MaterialCommunityIcons name="replay" size={26} color={white} />
                     </TouchableOpacity>
                     <TouchableOpacity 
                         style = {[styles.btn, {
@@ -67,6 +69,7 @@ class QuizScore extends React.Component {
                         }]}
                         onPress = {this.onBackToDeck}
                     >
+                        <Ionicons name="md-chevron-back" size={26} color={white} />
                         <Text 
                             style = {styles.btnText}
                         >
@@ -124,6 +127,9 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
     },
     btn : {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
         borderRadius: 40,   
         padding: 20,   
         marginBottom: 20,  
@@ -136,11 +142,12 @@ const styles = StyleSheet.create({
         shadowOpacity: 1,
     },
     btnText : {
-        fontSize: 22,
+        fontSize: 20,
         textAlign: 'center',
         fontWeight: 'bold',
         textTransform: 'uppercase',
         color: white,
+        marginRight: 5,
     },
 
 })
