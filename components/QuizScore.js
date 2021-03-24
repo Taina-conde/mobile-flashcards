@@ -1,7 +1,13 @@
 import React from 'react' 
 import { View, Text, StyleSheet } from 'react-native'
+import { connect } from 'react-redux'
 
 class QuizScore extends React.Component {
+    componentDidMount() {
+        //clear notifications
+        clearLocalNotification()
+            .then(setLocalNotification)
+    }
     handleRestart = () => {
         this.setState({
             countCorrect: 0,
@@ -37,9 +43,7 @@ class QuizScore extends React.Component {
         const { dispatch, route } = this.props;
         const { deckId } = route.params;
         dispatch(handleSaveResults(deckId, results))
-        //clear notifications
-        clearLocalNotification()
-            .then(setLocalNotification)
+        
 
     }
     render(){
@@ -148,4 +152,4 @@ const styles = StyleSheet.create({
     },
 
 })
-export default QuizScore
+export default connect()(QuizScore)
