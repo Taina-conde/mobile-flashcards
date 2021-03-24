@@ -88,7 +88,7 @@ class QuizView extends React.Component {
         const deck = decks[deckId];
         const textSize = animatedValue.interpolate({
             inputRange: [0, 1],
-            outputRange: [0, 36]
+            outputRange: [28, 36]
         })
         
 
