@@ -69,9 +69,19 @@ class QuizView extends React.Component {
         const { 
             countCorrect, 
             currentCardIndex, 
-            showQuestion 
+            showQuestion,
+            animatedValue
         } = this.state;
         const deck = decks[deckId];
+        const textSize = animatedValue.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, 36]
+        })
+        const animatedBoxSize = animatedValue.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, 200]
+        })
+
         if (deck.questions.length === 0) {
             return <NoCards style = {styles.container}/>
         }
@@ -96,24 +106,20 @@ class QuizView extends React.Component {
                 <Text style = {styles.cardsLeft}>
                     {`${currentCardIndex + 1}/${cardsTotal}`}
                 </Text>
-                {showQuestion 
-                    ? (<View 
-                        style = {styles.animatedContainer}
-                    >
+                <Animated.View style = {[styles.animatedContainer, {
+
+                }]}>
+                    {showQuestion 
+                        ? 
                         <Animated.Text style = {[styles.mainText, {opacity: animatedValue}]}>
                             {currentCard.question}
                         </Animated.Text>
-                        
-                    </View>)
-                    : (<Animated.View
-                        style = {[styles.animatedContainer, {opacity: answerAnim}]}
-                    >
-                        <Text style = {styles.mainText}>
+                        : 
+                        <Animated.Text style = {[styles.mainText, {opacity: animatedValue}]}>
                             {currentCard.answer}
-                        </Text>
-                        
-                    </Animated.View>)
-                }
+                        </Animated.Text>   
+                    }
+                </Animated.View>
                 { showQuestion 
                     ? (<TouchableOpacity onPress = {this.animate}>
                         <Text style = {styles.flipText}>
