@@ -43,7 +43,7 @@ class QuizScore extends React.Component {
                     <Text style = {styles.scoreText}>Score</Text>
                     <View style = {styles.resultsBox}>
                         <Text style = {styles.scoreResult}>
-                            {results}
+                            {this.props.results}
                         </Text>
                     </View>
                     <View style = {styles.btnGroup}>
@@ -51,7 +51,7 @@ class QuizScore extends React.Component {
                             style = {[styles.btn, {
                                 backgroundColor: lightBlue,
                             }]}
-                            onPress = {this.handleRestart}
+                            onPress = {this.onRestart}
                         >
                             <Text 
                                 style = {styles.btnText}
@@ -63,7 +63,7 @@ class QuizScore extends React.Component {
                             style = {[styles.btn, {
                                 backgroundColor: gray
                             }]}
-                            onPress = {this.handleBackToDeck}
+                            onPress = {this.onBackToDeck}
                         >
                             <Text 
                                 style = {styles.btnText}
