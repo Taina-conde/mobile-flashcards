@@ -12,10 +12,7 @@ import {
     setLocalNotification 
 } from '../utils/helpers'
 import { lightBlue,
-    green, 
     white,
-    red,
-    lightGray,
     gray,
     blue
 } from '../utils/colors'

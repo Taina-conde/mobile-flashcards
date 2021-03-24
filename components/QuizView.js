@@ -4,6 +4,7 @@ import { View,
     StyleSheet, 
     TouchableOpacity,
     Animated,
+    Easing
 } from 'react-native'
 import { connect } from 'react-redux'
 import NoCards from './NoCards'
@@ -12,9 +13,6 @@ import { lightBlue,
      green, 
      white,
      red,
-     lightGray,
-     gray,
-     blue
 } from '../utils/colors'
 
 
@@ -24,8 +22,7 @@ class QuizView extends React.Component {
     state = {
         countCorrect: 0,
         currentCardIndex: 0,
-        questionAnim: new Animated.Value(1),
-        answerAnim : new Animated.Value(0),
+        animatedValue: new Animated.Value(0),
         showQuestion: true,
     }
     
@@ -54,6 +51,16 @@ class QuizView extends React.Component {
     handleBackToDeck = () => {
         const { navigation } = this.props;
         navigation.goBack()  
+    }
+    animate = () => {
+        this.setState({
+            animatedValue: 0
+        })
+        Animated.timing(animatedValue, {
+            toValue: 1,
+            duration: 1200,
+            easing: Easing.bounce,
+          }).start();
     }
    
     flipToAnswer = ()=> {
@@ -135,14 +142,14 @@ class QuizView extends React.Component {
                     {`${currentCardIndex + 1}/${cardsTotal}`}
                 </Text>
                 {showQuestion 
-                    ? (<Animated.View 
-                        style = {[styles.animatedContainer, {opacity: questionAnim}]}
+                    ? (<View 
+                        style = {styles.animatedContainer}
                     >
-                        <Text style = {styles.mainText}>
+                        <Animated.Text style = {[styles.mainText, {opacity: animatedValue}]}>
                             {currentCard.question}
-                        </Text>
+                        </Animated.Text>
                         
-                    </Animated.View>)
+                    </View>)
                     : (<Animated.View
                         style = {[styles.animatedContainer, {opacity: answerAnim}]}
                     >
