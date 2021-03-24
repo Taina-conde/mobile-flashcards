@@ -1,6 +1,6 @@
 import React from 'react' 
 import { 
-    View, 
+    Platform, 
     Text, 
     StyleSheet, 
     TextInput,
@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
         marginTop: 60,
     },
     createBtn : {
-        borderRadius: 40,
+        borderRadius: Platform.OS === 'ios' ? 40 : 10,
         alignSelf: 'stretch',
         marginLeft: 80,
         marginRight: 80,
