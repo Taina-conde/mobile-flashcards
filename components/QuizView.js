@@ -32,12 +32,11 @@ class QuizView extends React.Component {
     handleOnPress(userAnswer) {
         console.log('userAnswer', userAnswer)
         if (userAnswer === 'correct') {
-            this.setState({
+            this.setState(() => ({
                 countCorrect: this.state.countCorrect + 1,
                 currentCardIndex : this.state.currentCardIndex + 1,
                 showQuestion: true
-            })
-            this.animate()
+            }))
         }
         this.setState(()=> ({
             currentCardIndex: this.state.currentCardIndex + 1,
