@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import { connect } from 'react-redux'
 import { gray, lightBlue, white, blue, lightGray } from '../utils/colors';
+import { Octicons, Fontisto } from '@expo/vector-icons';
 
 class DeckView extends React.Component {
     render(){
@@ -20,14 +21,26 @@ class DeckView extends React.Component {
                     onPress = {() => navigation.navigate(
                         'New question', 
                         { deckId })}>
-                    <Text style = {styles.buttonText}>Add card</Text>
+                    <Text style = {styles.buttonText}>
+                        Add card
+                        
+                    </Text>
+                    <Octicons 
+                            name="plus" 
+                            size={20} 
+                            color={white} 
+                        />
+                    
                 </TouchableOpacity>
                 <TouchableOpacity 
                     style = {styles.startBtn}
                     onPress = {() => navigation.navigate(
                         'Quiz details', 
                         { deckId })}>
-                    <Text style = {styles.buttonText}>Start quiz</Text>
+                    <Text style = {styles.buttonText}>
+                        Start quiz
+                    </Text>
+                    <Fontisto name="play" size={16} color={white} />
                 </TouchableOpacity>
             </View>
         )
@@ -50,6 +63,9 @@ const styles = StyleSheet.create({
         marginBottom: 100,
     },
     addBtn : {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
         padding: 20,
         marginLeft: 60,
         marginRight: 60,
@@ -67,6 +83,9 @@ const styles = StyleSheet.create({
         
     },
     startBtn : {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
         padding: 20,
         marginLeft: 60,
         marginRight: 60,
@@ -84,11 +103,12 @@ const styles = StyleSheet.create({
     },
     buttonText : {
         color: white,
-        fontSize: 16,
+        fontSize: 20,
         textTransform: 'uppercase',
         fontWeight: 'bold',
         textAlign: 'center',
-    }
+        marginRight: 15,
+    },
 })
 function mapStateToProps(decks) {
     return {
