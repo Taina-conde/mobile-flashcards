@@ -5,16 +5,23 @@ import {
     StyleSheet, 
     TouchableOpacity,
     FlatList,
+    ActivityIndicator
 } from 'react-native';
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions';
-import {  white, lightGray } from '../utils/colors';
+import {  white, lightGray, lightBlue } from '../utils/colors';
 
 class DeckListView extends React.Component {
+    state = {
+        ready: false,
+    }
     componentDidMount() {
         const { dispatch } = this.props;
         
         dispatch(handleInitialData())
+        this.setState({
+            ready: true
+        })
 
     }
     renderItem = ({ item }) => {
@@ -33,10 +40,12 @@ class DeckListView extends React.Component {
     
     render (){
         const { decks } = this.props;
+        const { ready } = this.state;
         const decksKeys = Object.keys(decks);
         const data = Object.values(decks)
         return(
             <View style = {styles.container}>
+                {ready === false && <ActivityIndicator size = "large" color={lightBlue}/>}
                 { (decksKeys.length === 0)
                   ? <Text style = {styles.noDecks}> 0 decks</Text>
                   : <FlatList 
