@@ -1,5 +1,11 @@
 import React from 'react' 
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
+import { 
+    View, 
+    Text, 
+    StyleSheet, 
+    TouchableOpacity,
+    Platform
+ } from 'react-native'
 import { connect } from 'react-redux'
 import { gray, lightBlue, white, blue, lightGray } from '../utils/colors';
 import { Octicons, Fontisto } from '@expo/vector-icons';
@@ -72,7 +78,7 @@ const styles = StyleSheet.create({
         marginTop: 100,
         alignSelf: 'stretch',
         backgroundColor: gray,
-        borderRadius: 30,
+        borderRadius: Platform.OS === 'ios' ? 30 : 5,
         shadowColor: `rgba(0,0,0, 0.24)`,
         shadowOffset: {
             width: 0, 
@@ -92,7 +98,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
         backgroundColor: lightBlue,
         alignSelf: 'stretch',
-        borderRadius: 30,
+        borderRadius: Platform.OS === 'ios' ? 30 : 5,
         shadowColor: `rgba(0,0,0, 0.24)`,
         shadowOffset: {
             width: 0, 
