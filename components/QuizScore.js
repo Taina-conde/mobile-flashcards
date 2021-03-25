@@ -3,7 +3,8 @@ import {
     View,
     Text, 
     StyleSheet, 
-    TouchableOpacity
+    TouchableOpacity,
+    Platform
  } from 'react-native'
 import { connect } from 'react-redux'
 import { handleSaveResults} from '../actions'
@@ -130,7 +131,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        borderRadius: 40,   
+        borderRadius: Platform.OS === 'ios' ? 40 : 5,   
         padding: 20,   
         marginBottom: 20,  
         shadowColor: `rgba(0,0,0, 0.24)`,

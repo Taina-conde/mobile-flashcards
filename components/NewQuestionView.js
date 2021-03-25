@@ -1,6 +1,6 @@
 import React from 'react' 
 import { 
-    View, 
+    Platform, 
     Text, 
     StyleSheet, 
     TextInput,
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         fontSize: 22,  
     },
     submitBtn : {
-        borderRadius: 40,
+        borderRadius: Platform.OS === 'ios' ? 40 : 5,
         alignSelf: 'stretch',
         marginLeft: 80,
         marginRight: 80,

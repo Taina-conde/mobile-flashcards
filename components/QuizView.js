@@ -4,7 +4,8 @@ import { View,
     StyleSheet, 
     TouchableOpacity,
     Animated,
-    Easing
+    Easing,
+    Platform
 } from 'react-native'
 import { connect } from 'react-redux'
 import NoCards from './NoCards'
@@ -211,7 +212,7 @@ const styles = StyleSheet.create({
         alignSelf: 'stretch',
     },
     btn : {
-        borderRadius: 40,   
+        borderRadius: Platform.OS === 'ios' ? 40 : 5,   
         padding: 20,   
         marginBottom: 20,  
         shadowColor: `rgba(0,0,0, 0.24)`,
