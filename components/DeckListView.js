@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import { connect } from 'react-redux';
 import { handleInitialData } from '../actions';
-import {  white, lightGray, lightBlue } from '../utils/colors';
+import {  white, lightGray, lightBlue, blue } from '../utils/colors';
 
 class DeckListView extends React.Component {
     state = {
@@ -19,9 +19,9 @@ class DeckListView extends React.Component {
         const { dispatch } = this.props;
         
         dispatch(handleInitialData())
-        this.setState({
+        .then (() => this.setState({
             ready: true
-        })
+        }))
 
     }
     renderItem = ({ item }) => {
@@ -45,8 +45,8 @@ class DeckListView extends React.Component {
         const data = Object.values(decks)
         return(
             <View style = {styles.container}>
-                {ready === false && <ActivityIndicator size = "large" color={lightBlue}/>}
-                { (decksKeys.length === 0)
+                {ready === false && <ActivityIndicator style={styles.loading} size = "large" color={lightBlue}/>}
+                { (decksKeys.length === 0 && ready === true)
                   ? <Text style = {styles.noDecks}> 0 decks</Text>
                   : <FlatList 
                         
@@ -66,6 +66,10 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'stretch', 
+    },
+    loading : {
+        flex: 1,
+        
     },
     noDecks : {
         alignSelf: 'center',
