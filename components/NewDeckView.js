@@ -57,7 +57,7 @@ class NewDeckView extends React.Component {
         return (
             <KeyboardAvoidingView 
                 style = {styles.container}
-                behavior={Platform.OS === "ios" ? "padding" : "height"}
+                behavior='padding'
             >
                 
                 <Text style = {styles.text}>What is the title of your new deck?</Text>
