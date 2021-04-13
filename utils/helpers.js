@@ -25,7 +25,6 @@ const setObjectValue = async (value) => {
     return {
       title: 'Study reminder 📚 ',
       body: "📝 Don't forget to complete at least one quiz today!",
-     
     }
   }
   async function requestPermissionsAsync() {
@@ -44,11 +43,10 @@ const setObjectValue = async (value) => {
     AsyncStorage.getItem(NOTIFICATION_KEY)
       .then(JSON.parse)
       .then(data => {
-        console.log('data', data)
+        
         requestPermissionsAsync()
         .then((response) => {
-          console.log('response', response)
-          console.log('ios status', response.ios.status)
+          
           if (response.status === 'granted' && response.ios.status === 2 ) {
             
 
@@ -68,8 +66,8 @@ const setObjectValue = async (value) => {
             Notifications.scheduleNotificationAsync({
               content: createNotification(),
               trigger: {
-                hour: 18,
-                minute: 44,
+                hour: 19,
+                minute: 0,
                 repeats : true,
               }
             })
