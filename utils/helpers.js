@@ -48,12 +48,6 @@ const setObjectValue = async (value) => {
         .then((response) => {
           
           if (response.status === 'granted' && response.ios.status === 2 ) {
-            
-
-            let tomorrow = new Date()
-            tomorrow.setDate(tomorrow.getDate() + 1)
-            tomorrow.setHours(20)
-            tomorrow.setMinutes(0)
 
             Notifications.setNotificationHandler({
               handleNotification: async () => ({
@@ -66,7 +60,7 @@ const setObjectValue = async (value) => {
             Notifications.scheduleNotificationAsync({
               content: createNotification(),
               trigger: {
-                hour: 19,
+                hour: 20,
                 minute: 0,
                 repeats : true,
               }
