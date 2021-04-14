@@ -48,7 +48,7 @@ const setObjectValue = async (value) => {
         .then((response) => {
           
           if (response.status === 'granted' && response.ios.status === 2 ) {
-
+            Notifications.cancelAllScheduledNotificationsAsync()
             Notifications.setNotificationHandler({
               handleNotification: async () => ({
                 shouldShowAlert: true,
