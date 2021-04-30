@@ -3,7 +3,6 @@ export const DATA_STORAGE_KEY = "MobileFlashcards : data";
 
 export function getDecks() {
   return AsyncStorage.getItem(DATA_STORAGE_KEY).then((results) => {
-    console.log("results", JSON.parse(results));
     return JSON.parse(results);
   });
 }
@@ -23,11 +22,7 @@ export function saveDeckTitle({ title }) {
         results: [],
       },
     })
-  )
-    .then(() => getDecks())
-    .then((decks) => {
-      console.log("save deck title: ", decks);
-    });
+  );
 }
 export function addCard(title, card) {
   return getDeck(title).then((deck) => {
@@ -58,24 +53,19 @@ export function saveResultsToDeck(title, results) {
   });
 }
 export async function deleteDeck(deckId) {
-    let newDecks = {};
-    const decks = await getDecks();
-    const decksIdsArr = Object.keys(decks);
-    const decksIdsArrWithoutDeletedDeck = decksIdsArr.filter(
-      (id) => id !== deckId
-    );
-    decksIdsArrWithoutDeletedDeck.map((id) => {
-      newDecks = {
-        ...newDecks,
-        [id]: decks[id],
-      };
-    });
-    console.log('new decks in delete deck', newDecks)
-    
-    await AsyncStorage.setItem(
-        DATA_STORAGE_KEY, 
-        JSON.stringify(newDecks)
-        )
-    return newDecks
- 
+  let newDecks = {};
+  const decks = await getDecks();
+  const decksIdsArr = Object.keys(decks);
+  const decksIdsArrWithoutDeletedDeck = decksIdsArr.filter(
+    (id) => id !== deckId
+  );
+  decksIdsArrWithoutDeletedDeck.map((id) => {
+    newDecks = {
+      ...newDecks,
+      [id]: decks[id],
+    };
+  });
+
+  await AsyncStorage.setItem(DATA_STORAGE_KEY, JSON.stringify(newDecks));
+  return newDecks;
 }
