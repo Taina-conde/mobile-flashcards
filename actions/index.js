@@ -61,7 +61,7 @@ export function handleDeleteDeck (deckId) {
         return deleteDeck(deckId)
             .then((res) =>console.log('res in handleDeleteDeck', res) )
             .then((res) => {
-                dispatch(removeDeck(deckId))
+                dispatch(receiveDecks())
             })
     }
 }

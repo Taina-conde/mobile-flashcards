@@ -2,7 +2,8 @@ import {
     RECEIVE_DECKS,
     ADD_DECK,
     ADD_CARD_TO_DECK,
-    SAVE_RESULTS
+    SAVE_RESULTS,
+    REMOVE_DECK
 } from '../actions'
 
 export default function decks(state = {}, action) {

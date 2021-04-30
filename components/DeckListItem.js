@@ -1,6 +1,7 @@
 import React from "react";
 import { TouchableOpacity, Text, StyleSheet } from "react-native";
 import { white, lightGray} from "../utils/colors";
+import DeleteDeckBtn from './DeleteDeckBtn'
 
 const DeckListItem = (props) => {
   return (
@@ -15,6 +16,8 @@ const DeckListItem = (props) => {
           ? `${props.item.questions.length} card`
           : `${props.item.questions.length} cards`}
       </Text>
+      <DeleteDeckBtn/>
+
     </TouchableOpacity>
   );
 };
