@@ -9,4 +9,5 @@ export const gray = 'gray';
 export const fadedBlue = '#E6E9F2';
 export const red = '#FA5858';
 export const fadedRed = 'rgba(250, 88, 88, 0.4)'
-export const yellow = '#DBA901'
+export const yellow = '#DBA901';
+export const darkRed = '#C42828';
