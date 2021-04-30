@@ -11,7 +11,7 @@ const DeleteDeckBtn = (props) => {
     if (props.parent === "DeckView") {
       
       props.dispatch(handleDeleteDeck(props.id));
-      navigation.navigate('Home')
+      navigation.navigate('Decks')
     }
     console.log("props in dlete", props);
     props.dispatch(handleDeleteDeck(props.id));
