@@ -18,6 +18,7 @@ const DeckListItem = (props) => {
       </Text>
       <DeleteDeckBtn
         id = {props.item.title}
+        font = {14}
       />
 
     </TouchableOpacity>
