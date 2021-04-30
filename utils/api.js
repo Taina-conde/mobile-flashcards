@@ -57,23 +57,25 @@ export function saveResultsToDeck(title, results) {
     );
   });
 }
-export function deleteDeck(deckId) {
-  return getDecks().then((decks) => {
-    let newData = {};
+export async function deleteDeck(deckId) {
+    let newDecks = {};
+    const decks = await getDecks();
     const decksIdsArr = Object.keys(decks);
     const decksIdsArrWithoutDeletedDeck = decksIdsArr.filter(
       (id) => id !== deckId
     );
     decksIdsArrWithoutDeletedDeck.map((id) => {
-      newData = {
-        ...newData,
+      newDecks = {
+        ...newDecks,
         [id]: decks[id],
       };
     });
-    console.log("newData", newData);
-    return AsyncStorage.setItem(
+    console.log('new decks in delete deck', newDecks)
+    
+    await AsyncStorage.setItem(
         DATA_STORAGE_KEY, 
-        JSON.stringify(newData)
-        );
-  });
+        JSON.stringify(newDecks)
+        )
+    return newDecks
+ 
 }

@@ -59,9 +59,9 @@ export function handleSaveResults(deckId, results) {
 export function handleDeleteDeck (deckId) {
     return (dispatch) => {
         return deleteDeck(deckId)
-            .then((res) =>console.log('res in handleDeleteDeck', res) )
-            .then((res) => {
-                dispatch(receiveDecks())
+            .then ((decks)=> {
+                console.log('decks in handle delete', decks)
+                dispatch(removeDeck(decks))
             })
     }
 }
@@ -96,10 +96,10 @@ function saveResults(deckId, results) {
         results
     }
 }
-function removeDeck(deckId) {
+function removeDeck(decks) {
     return {
         type: REMOVE_DECK,
-        deckId,
+        decks,
     }
 }
 

@@ -37,6 +37,10 @@ export default function decks(state = {}, action) {
                     results: state[action.deckId].results.concat([ action.results ])
                 }
             }
+        case REMOVE_DECK: 
+            return {
+                ...action.decks,
+            }
         default :
             return state
     }

@@ -16,7 +16,9 @@ const DeckListItem = (props) => {
           ? `${props.item.questions.length} card`
           : `${props.item.questions.length} cards`}
       </Text>
-      <DeleteDeckBtn/>
+      <DeleteDeckBtn
+        id = {props.item.title}
+      />
 
     </TouchableOpacity>
   );

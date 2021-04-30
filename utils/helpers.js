@@ -3,7 +3,7 @@ import * as Notifications from "expo-notifications";
 
 const NOTIFICATION_KEY = "MobileFlashcards : notifications";
 
-const setObjectValue = async (value) => {
+export const setObjectValue = async (value) => {
   try {
     const jsonValue = JSON.stringify(value);
     await AsyncStorage.setItem(NOTIFICATION_KEY, jsonValue);
