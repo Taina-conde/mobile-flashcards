@@ -2,12 +2,14 @@ import {
     getDecks,
     saveDeckTitle,
     saveResultsToDeck,
-    addCard
+    addCard,
+    deleteDeck
  } from '../utils/api'
 export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 export const ADD_DECK = 'ADD_DECK'
 export const ADD_CARD_TO_DECK = 'ADD_CARD_TO_DECK'
 export const SAVE_RESULTS = 'SAVE_RESULTS'
+export const REMOVE_DECK = 'REMOVE_DECK'
 
 export function handleInitialData() {
     return (dispatch) => {
@@ -54,6 +56,15 @@ export function handleSaveResults(deckId, results) {
             })
     }
 }
+export function handleDeleteDeck (deckId) {
+    return (dispatch) => {
+        return deleteDeck(deckId)
+            .then((res) =>console.log('res in handleDeleteDeck', res) )
+            .then((res) => {
+                dispatch(removeDeck(deckId))
+            })
+    }
+}
 
 function receiveDecks(decks) {
     return {
@@ -83,6 +94,12 @@ function saveResults(deckId, results) {
         type: SAVE_RESULTS,
         deckId,
         results
+    }
+}
+function removeDeck(deckId) {
+    return {
+        type: REMOVE_DECK,
+        deckId,
     }
 }
 
