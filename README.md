@@ -6,8 +6,8 @@ At the end of the quiz the user can see his/her score which is the percentage of
 
 ## Demo
 
+![mobile-flashcards-demo-video](https://user-images.githubusercontent.com/62517353/116935499-6f44f880-ac34-11eb-8843-845032be3878.gif)
 
-![mobile-flashcards-demo](https://user-images.githubusercontent.com/62517353/116934642-3bb59e80-ac33-11eb-9255-a969901e3fba.gif)
 
 ## Instructions
 
