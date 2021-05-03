@@ -4,6 +4,11 @@ This is a Mobile App built using React Native for both IOS and Android devices. 
 Whenever he/she wishes to revise the content of a deck, he/she can start that deck's quiz. Each card will show first the question, the user answers it mentally, clicks show answer to check if he/she answered correctly, and then presses the correct button, in case his/her answer was correct or the incorrect button otherwise.
 At the end of the quiz the user can see his/her score which is the percentage of questions he/she answered correctly. 
 
+## Demo
+
+
+![mobile-flashcards-demo](https://user-images.githubusercontent.com/62517353/116934642-3bb59e80-ac33-11eb-9255-a969901e3fba.gif)
+
 ## Instructions
 
 To get started using this App:
